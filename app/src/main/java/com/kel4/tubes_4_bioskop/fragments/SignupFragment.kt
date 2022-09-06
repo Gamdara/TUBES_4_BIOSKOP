@@ -30,17 +30,8 @@ class SignupFragment : Fragment() {
         button.setOnClickListener{
             inputUsername = requireView().findViewById(R.id.tilUsername)
             inputPassword = requireView().findViewById(R.id.tilPassword)
-
             val username : String = inputUsername?.getEditText()?.getText().toString()
             val password : String = inputPassword?.getEditText()?.getText().toString()
-            if(username.isEmpty()) {
-                inputUsername.setError("Username tidak boleh kosong")
-                return@setOnClickListener
-            }
-            if(password.isEmpty()) {
-                inputPassword.setError("Password tidak boleh kosong")
-                return@setOnClickListener
-            }
             val fragment : Fragment = LoginFragment()
             val ft: FragmentTransaction = getParentFragmentManager().beginTransaction()
             val bundle = Bundle()

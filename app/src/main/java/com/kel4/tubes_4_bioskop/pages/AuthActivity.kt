@@ -9,7 +9,7 @@ import com.kel4.tubes_4_bioskop.R
 class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getSupportActionBar()?.hide()
+
         setContentView(R.layout.activity_auth)
 
     }
