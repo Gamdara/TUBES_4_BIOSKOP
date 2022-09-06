@@ -1,10 +1,8 @@
 package com.kel4.tubes_4_bioskop
 
-import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kel4.tubes_4_bioskop.fragments.PlayingFragment
@@ -26,14 +24,7 @@ class MainActivity : AppCompatActivity() {
                     changeFragment(UpcomingFragment())
                 }
                 R.id.page_3 -> {
-                    val builder: AlertDialog.Builder = AlertDialog.Builder(this@MainActivity)
-                    builder.setMessage("Are you sure want to exit?")
-                        .setPositiveButton("YES", object : DialogInterface.OnClickListener{
-                            override fun onClick(dialogInterface: DialogInterface, i: Int) {
-                                finishAndRemoveTask()
-                            }
-                        })
-                        .show()
+                    changeFragment(TicketFragment())
                 }
             }
             false
@@ -50,8 +41,6 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
     }
-
-
 
 
 }
