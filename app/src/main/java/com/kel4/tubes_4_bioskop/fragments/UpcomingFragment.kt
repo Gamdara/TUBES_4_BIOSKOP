@@ -5,7 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.kel4.tubes_4_bioskop.R
+import com.kel4.tubes_4_bioskop.RVPlayingAdapter
+import com.kel4.tubes_4_bioskop.RVUpcomingAdapter
+import com.kel4.tubes_4_bioskop.entity.Movie
+
 class UpcomingFragment : Fragment() {
 
     override fun onCreateView(
@@ -16,4 +22,17 @@ class UpcomingFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_upcoming, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val layoutManager : GridLayoutManager = GridLayoutManager(context,2)
+        val adapter : RVUpcomingAdapter = RVUpcomingAdapter(Movie.listOfUpComing)
+
+        val rvUpComing : RecyclerView = view.findViewById(R.id.rv_playing)
+
+        rvUpComing.layoutManager = layoutManager
+
+        rvUpComing.setHasFixedSize(true)
+
+        rvUpComing.adapter = adapter
+    }
 }
