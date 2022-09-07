@@ -5,13 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.kel4.tubes_4_bioskop.R
-import com.kel4.tubes_4_bioskop.RVMovieAdapter
-import com.kel4.tubes_4_bioskop.entity.Movie
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.kel4.tubes_4_bioskop.entity.NowPlaying
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.kel4.tubes_4_bioskop.RVPlayingAdapter
+import androidx.appcompat.app.AppCompatActivity
+import android.view.Menu
+import com.kel4.tubes_4_bioskop.MainActivity
+import com.kel4.tubes_4_bioskop.fragments.PlayingFragment
+import com.kel4.tubes_4_bioskop.fragments.TicketFragment
+import com.kel4.tubes_4_bioskop.fragments.UpcomingFragment
 
-class PlayingFragment : Fragment() {
+class PlayingFragment : Fragment(){
+    lateinit var nav : Menu
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,19 +32,20 @@ class PlayingFragment : Fragment() {
 
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val layoutManager = LinearLayoutManager(context)
-        val adapter : RVMovieAdapter = RVMovieAdapter(Movie.listOfMovie)
+        val adapter : RVPlayingAdapter = RVPlayingAdapter(NowPlaying.listOfNowPlaying)
 
-        val rvMahasiswa : RecyclerView = view.findViewById(R.id.rv_playing)
+        val rvPlaying : RecyclerView = view.findViewById(R.id.rv_playing)
 
-        rvMahasiswa.layoutManager = layoutManager
+        rvPlaying.layoutManager = layoutManager
 
-        rvMahasiswa.setHasFixedSize(true)
+        rvPlaying.setHasFixedSize(true)
 
-        rvMahasiswa.adapter = adapter
+        rvPlaying.adapter = adapter
     }
+
+
 
 }
