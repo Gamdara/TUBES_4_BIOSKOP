@@ -19,6 +19,7 @@ class Movie(var judul: String, var rating: Int ,var sinopsis: String, var direct
 
         )
 
+
         var listOfUpComing = arrayOf(
             Movie("Ngeri-Ngeri Sedap", 4, "sinopsis", "director", "writter", R.drawable.poster_nowplaying_1),
             Movie("Mencuri Raden Saleh", 4, "sinopsis", "director", "writter", R.drawable.poster_nowplaying_2),

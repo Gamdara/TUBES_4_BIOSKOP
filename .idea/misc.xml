@@ -10,10 +10,12 @@
         <entry key="..\:/Andro/TUBES_4_BIOSKOP/app/src/main/res/layout/fragment_signup.xml" value="0.27291666666666664" />
         <entry key="..\:/UAJY/SEM5/PRAKTIKUM PEMROGAMAN BERBASIS PLATFORM/TUBES_4_BIOSKOP/TUBES_4_BIOSKOP/app/src/main/res/layout/activity_main.xml" value="0.2427536231884058" />
         <entry key="..\:/UAJY/SEM5/PRAKTIKUM PEMROGAMAN BERBASIS PLATFORM/TUBES_4_BIOSKOP/TUBES_4_BIOSKOP/app/src/main/res/layout/fragment_playing.xml" value="0.176" />
+        <entry key="..\:/UAJY/SEM5/PRAKTIKUM PEMROGAMAN BERBASIS PLATFORM/TUBES_4_BIOSKOP/TUBES_4_BIOSKOP/app/src/main/res/layout/fragment_ticket.xml" value="0.25416666666666665" />
         <entry key="..\:/UAJY/SEM5/PRAKTIKUM PEMROGAMAN BERBASIS PLATFORM/TUBES_4_BIOSKOP/TUBES_4_BIOSKOP/app/src/main/res/layout/fragment_upcoming.xml" value="0.12360688956433637" />
         <entry key="..\:/UAJY/SEM5/PRAKTIKUM PEMROGAMAN BERBASIS PLATFORM/TUBES_4_BIOSKOP/TUBES_4_BIOSKOP/app/src/main/res/layout/rv_item_movie.xml" value="0.264" />
         <entry key="..\:/UAJY/SEM5/PRAKTIKUM PEMROGAMAN BERBASIS PLATFORM/TUBES_4_BIOSKOP/TUBES_4_BIOSKOP/app/src/main/res/layout/rv_item_movie_kanan.xml" value="0.12310030395136778" />
         <entry key="..\:/UAJY/SEM5/PRAKTIKUM PEMROGAMAN BERBASIS PLATFORM/TUBES_4_BIOSKOP/TUBES_4_BIOSKOP/app/src/main/res/layout/rv_item_nowplaying.xml" value="0.253125" />
+        <entry key="..\:/UAJY/SEM5/PRAKTIKUM PEMROGAMAN BERBASIS PLATFORM/TUBES_4_BIOSKOP/TUBES_4_BIOSKOP/app/src/main/res/layout/rv_item_ticket.xml" value="0.253125" />
         <entry key="..\:/UAJY/SEM5/PRAKTIKUM PEMROGAMAN BERBASIS PLATFORM/TUBES_4_BIOSKOP/TUBES_4_BIOSKOP/app/src/main/res/layout/rv_item_upcoming.xml" value="0.12310030395136778" />
       </map>
     </option>
