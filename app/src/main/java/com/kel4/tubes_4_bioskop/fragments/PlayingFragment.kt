@@ -6,19 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.kel4.tubes_4_bioskop.R
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.kel4.tubes_4_bioskop.entity.NowPlaying
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kel4.tubes_4_bioskop.RVPlayingAdapter
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
-import com.kel4.tubes_4_bioskop.MainActivity
-import com.kel4.tubes_4_bioskop.fragments.PlayingFragment
-import com.kel4.tubes_4_bioskop.fragments.TicketFragment
-import com.kel4.tubes_4_bioskop.fragments.UpcomingFragment
+import androidx.recyclerview.widget.GridLayoutManager
+import com.kel4.tubes_4_bioskop.entity.Movie
 
 class PlayingFragment : Fragment(){
     lateinit var nav : Menu
@@ -34,8 +26,8 @@ class PlayingFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val layoutManager = LinearLayoutManager(context)
-        val adapter : RVPlayingAdapter = RVPlayingAdapter(NowPlaying.listOfNowPlaying)
+        val layoutManager : GridLayoutManager = GridLayoutManager(context,2)
+        val adapter : RVPlayingAdapter = RVPlayingAdapter(Movie.listOfNowPlaying)
 
         val rvPlaying : RecyclerView = view.findViewById(R.id.rv_playing)
 
