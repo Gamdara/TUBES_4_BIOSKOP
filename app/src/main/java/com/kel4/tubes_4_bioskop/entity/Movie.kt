@@ -20,6 +20,15 @@ class Movie(var judul: String, var rating: Int ,var sinopsis: String, var direct
         val blackAdam : Movie = Movie("Black Adam", 4, "sinopsis", "director", "writter", R.drawable.poster_blackadam)
         val onePiece : Movie = Movie("One Piece Red", 4, "sinopsis", "director", "writter", R.drawable.poster_onepiece)
         val pinocchio : Movie = Movie("Pinocchio", 4, "sinopsis", "director", "writter", R.drawable.poster_pinocchio)
+        val avatar : Movie = Movie("Avatar: The Way of Water", 4, "sinopsis", "director", "writter", R.drawable.poster_avatar)
+        val blackPanther : Movie = Movie("Black Panther: Wakanda Forever", 4, "sinopsis", "director", "writter", R.drawable.poster_blackpanther)
+        val disenchanted : Movie = Movie("Disenchanted", 4, "sinopsis", "director", "writter", R.drawable.poster_disenchanted)
+        val puss : Movie = Movie("Puss in Boots: The Last Wish", 4, "sinopsis", "director", "writter", R.drawable.poster_puss)
+        val flash : Movie = Movie("The Flash", 4, "sinopsis", "director", "writter", R.drawable.poster_flash)
+        val medieval : Movie = Movie("Medieval", 4, "sinopsis", "director", "writter", R.drawable.poster_medieval)
+        val amsterdam : Movie = Movie("Amsterdam 2022", 4, "sinopsis", "director", "writter", R.drawable.poster_amsterdam)
+
+
 
         var listOfNowPlaying = arrayOf(
             ngeriNgeriSedap, mencuriRadenSaleh, cintaPertamaKeduaKetiga, pengabdiSetan, filosofiKopi,
@@ -28,7 +37,7 @@ class Movie(var judul: String, var rating: Int ,var sinopsis: String, var direct
 
 
         var listOfUpComing = arrayOf(
-            tekaTekiTika, garaGaraWarisan,kkn, blackAdam, onePiece, pinocchio
+            avatar, blackPanther, blackAdam, onePiece, pinocchio, disenchanted, puss, flash, medieval, amsterdam
         )
     }
 }
