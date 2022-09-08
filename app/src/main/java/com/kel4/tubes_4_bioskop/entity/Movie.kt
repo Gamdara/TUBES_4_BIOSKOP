@@ -5,26 +5,28 @@ import com.kel4.tubes_4_bioskop.R
 class Movie(var judul: String, var rating: Int ,var sinopsis: String, var director: String, var writter: String, var poster: Int) {
     companion object{
         @JvmField
-        var listOfNowPlaying = arrayOf(
-            Movie("Ngeri-Ngeri Sedap", 4, "sinopsis", "director", "writter", R.drawable.poster_nowplaying_1),
-            Movie("Mencuri Raden Saleh", 4, "sinopsis", "director", "writter", R.drawable.poster_nowplaying_2),
-            Movie("Cinta Pertama, Kedua&Ketiga", 4, "sinopsis", "director", "writter", R.drawable.poster_nowplaying_3),
-            Movie("Pengabdi Setan", 4, "sinopsis", "director", "writter", R.drawable.poster_nowplaying_4),
-            Movie("Filosofi Kopi", 4, "sinopsis", "director", "writter", R.drawable.poster_nowplaying_5),
-            Movie("Seperti Dendam", 4, "sinopsis", "director", "writter", R.drawable.poster_nowplaying_6),
-            Movie("Yuni", 4, "sinopsis", "director", "writter", R.drawable.poster_nowplaying_7),
-            Movie("Teka-Teki Tika", 4, "sinopsis", "director", "writter", R.drawable.poster_nowplaying_8),
-            Movie("Gara-Gara Warisan", 4, "sinopsis", "director", "writter", R.drawable.poster_nowplaying_9),
-            Movie("KKN", 4, "sinopsis", "director", "writter", R.drawable.poster_nowplaying_10)
+        //buat filmnya
 
+        val ngeriNgeriSedap : Movie = Movie("Ngeri-Ngeri Sedap", 4, "sinopsis", "director", "writter", R.drawable.poster_ngeringerisedap)
+        val mencuriRadenSaleh : Movie = Movie("Mencuri Raden Saleh", 4, "sinopsis", "director", "writter", R.drawable.poster_mencuriradensaleh)
+        val cintaPertamaKeduaKetiga : Movie = Movie("Cinta Pertama, Kedua & Ketiga", 4, "sinopsis", "director", "writter", R.drawable.poster_cintapertamakeduaketiga)
+        val pengabdiSetan : Movie = Movie("Pengabdi Setan", 4, "sinopsis", "director", "writter", R.drawable.poster_pengabdisetan)
+        val filosofiKopi : Movie = Movie("Filosofi Kopi", 4, "sinopsis", "director", "writter", R.drawable.poster_filosofikopi)
+        val sepertiDendam : Movie = Movie("Seperti Dendam", 4, "sinopsis", "director", "writter", R.drawable.poster_sepertidendam)
+        val yuni : Movie = Movie("Yuni", 4, "sinopsis", "director", "writter", R.drawable.poster_yuni)
+        val tekaTekiTika : Movie = Movie("Teka-Teki Tika", 4, "sinopsis", "director", "writter", R.drawable.poster_tekatekitika)
+        val garaGaraWarisan : Movie = Movie("Gara-Gara Warisan", 4, "sinopsis", "director", "writter", R.drawable.poster_garagarawarisan)
+        val kkn : Movie = Movie("KKN", 4, "sinopsis", "director", "writter", R.drawable.poster_kkn)
+
+
+        var listOfNowPlaying = arrayOf(
+            ngeriNgeriSedap, mencuriRadenSaleh, cintaPertamaKeduaKetiga, pengabdiSetan, filosofiKopi,
+            sepertiDendam, yuni, tekaTekiTika, garaGaraWarisan,kkn
         )
 
 
         var listOfUpComing = arrayOf(
-            Movie("Ngeri-Ngeri Sedap", 4, "sinopsis", "director", "writter", R.drawable.poster_nowplaying_1),
-            Movie("Mencuri Raden Saleh", 4, "sinopsis", "director", "writter", R.drawable.poster_nowplaying_2),
-            Movie("Cinta Pertama, Kedua&Ketiga", 4, "sinopsis", "director", "writter", R.drawable.poster_nowplaying_3),
-
+            tekaTekiTika, garaGaraWarisan,kkn
         )
     }
 }
