@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.kel4.tubes_4_bioskop.entity.Movie
 
-class RVPlayingAdapter(private val data: Array<Movie>) : RecyclerView.Adapter<RVPlayingAdapter.viewHolder>() {
+class RVUpcomingAdapter(private val data: Array<Movie>) : RecyclerView.Adapter<RVUpcomingAdapter.viewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder{
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.rv_item_movie, parent,false)

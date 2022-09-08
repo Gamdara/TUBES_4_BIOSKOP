@@ -1,12 +1,11 @@
 package com.kel4.tubes_4_bioskop
 
-import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.kel4.tubes_4_bioskop.R
 import com.kel4.tubes_4_bioskop.fragments.PlayingFragment
 import com.kel4.tubes_4_bioskop.fragments.TicketFragment
 import com.kel4.tubes_4_bioskop.fragments.UpcomingFragment
