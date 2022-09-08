@@ -3,13 +3,34 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/-VAP-/Tubes/app/src/main/res/drawable/ic_date_24.xml" value="0.2555" />
+        <entry key="..\:/-VAP-/Tubes/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.121" />
+        <entry key="..\:/-VAP-/Tubes/app/src/main/res/layout/activity_auth.xml" value="0.25" />
+        <entry key="..\:/-VAP-/Tubes/app/src/main/res/layout/activity_main.xml" value="0.16799999999999998" />
+        <entry key="..\:/-VAP-/Tubes/app/src/main/res/layout/fragment_login.xml" value="0.264" />
+        <entry key="..\:/-VAP-/Tubes/app/src/main/res/layout/fragment_playing.xml" value="0.264" />
+        <entry key="..\:/-VAP-/Tubes/app/src/main/res/layout/rv_item_movie.xml" value="0.25" />
+        <entry key="..\:/-VAP-/Tubes/app/src/main/res/layout/rv_item_ticket.xml" value="0.25" />
+        <entry key="..\:/-VAP-/Tubes/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.121" />
+        <entry key="..\:/-VAP-/Tubes/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.121" />
         <entry key="..\:/Andro/TUBES_4_BIOSKOP/app/src/main/res/layout/activity_auth.xml" value="0.27291666666666664" />
-        <entry key="..\:/Andro/TUBES_4_BIOSKOP/app/src/main/res/layout/activity_main.xml" value="0.27291666666666664" />
+        <entry key="..\:/Andro/TUBES_4_BIOSKOP/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Andro/TUBES_4_BIOSKOP/app/src/main/res/layout/activity_splash_screen.xml" value="0.2" />
+        <entry key="..\:/Andro/TUBES_4_BIOSKOP/app/src/main/res/layout/bottom_menu.xml" value="0.2940185341196293" />
         <entry key="..\:/Andro/TUBES_4_BIOSKOP/app/src/main/res/layout/fragment_login.xml" value="0.25" />
-        <entry key="..\:/Andro/TUBES_4_BIOSKOP/app/src/main/res/layout/fragment_signup.xml" value="0.27291666666666664" />
-        <entry key="..\:/Andro/TUBES_4_BIOSKOP/app/src/main/res/layout/rv_item_nowplaying.xml" value="0.1" />
-        <entry key="..\:/Andro/TUBES_4_BIOSKOP/app/src/main/res/layout/rv_movie.xml" value="0.1" />
+        <entry key="..\:/Andro/TUBES_4_BIOSKOP/app/src/main/res/layout/fragment_playing.xml" value="0.2807017543859649" />
+        <entry key="..\:/Andro/TUBES_4_BIOSKOP/app/src/main/res/layout/fragment_signup.xml" value="0.18" />
+        <entry key="..\:/Andro/TUBES_4_BIOSKOP/app/src/main/res/layout/fragment_ticket.xml" value="0.17074275362318841" />
+        <entry key="..\:/Andro/TUBES_4_BIOSKOP/app/src/main/res/layout/fragment_upcoming.xml" value="0.17074275362318841" />
+        <entry key="..\:/Andro/TUBES_4_BIOSKOP/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.20833333333333334" />
+        <entry key="..\:/Kuliah/KULIAH/Semester 5/Selasa/3 - 4 - INFT28504 - Pemrograman Berbasis Platform/Tubes/app/src/main/res/drawable-v24/ic_date_24.xml" value="0.121" />
+        <entry key="..\:/Kuliah/KULIAH/Semester 5/Selasa/3 - 4 - INFT28504 - Pemrograman Berbasis Platform/Tubes/app/src/main/res/drawable/ic_date_24.xml" value="0.121" />
+        <entry key="..\:/Kuliah/KULIAH/Semester 5/Selasa/3 - 4 - INFT28504 - Pemrograman Berbasis Platform/Tubes/app/src/main/res/drawable/ic_movie_24.xml" value="0.136" />
+        <entry key="..\:/Kuliah/KULIAH/Semester 5/Selasa/3 - 4 - INFT28504 - Pemrograman Berbasis Platform/Tubes/app/src/main/res/layout/fragment_playing.xml" value="0.15172101449275363" />
+        <entry key="..\:/Kuliah/KULIAH/Semester 5/Selasa/3 - 4 - INFT28504 - Pemrograman Berbasis Platform/Tubes/app/src/main/res/layout/fragment_upcoming.xml" value="0.15172101449275363" />
+        <entry key="..\:/Kuliah/KULIAH/Semester 5/Selasa/3 - 4 - INFT28504 - Pemrograman Berbasis Platform/Tubes/app/src/main/res/layout/rv_item_nowplaying.xml" value="0.15172101449275363" />
+        <entry key="..\:/Kuliah/KULIAH/Semester 5/Selasa/3 - 4 - INFT28504 - Pemrograman Berbasis Platform/Tubes/app/src/main/res/layout/rv_movie.xml" value="0.15172101449275363" />
+        <entry key="..\:/Kuliah/KULIAH/Semester 5/Selasa/3 - 4 - INFT28504 - Pemrograman Berbasis Platform/Tubes/app/src/main/res/menu/bottom_nav.xml" value="0.10989583333333333" />
       </map>
     </option>
   </component>
