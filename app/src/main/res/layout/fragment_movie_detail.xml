@@ -1,0 +1,193 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constrain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tvJudul"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="JUDUL"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/imageView"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:layout_marginEnd="20dp" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="168dp"
+                android:layout_height="197dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/ic_launcher_background"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvJudul"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintWidth_percent=".3" />
+
+            <Button
+                android:id="@+id/btnBuy"
+                style="@style/ThemeOverlay.Material3.Button.TextButton"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="59dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginEnd="71dp"
+                android:backgroundTint="@color/dark_blue"
+                android:fontFamily="@font/poppins"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                android:text="BUY TICKET"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnTrailer"
+                style="@style/ThemeOverlay.Material3.Button.TextButton"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="59dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="71dp"
+                android:backgroundTint="@color/dark_blue"
+                android:fontFamily="@font/poppins"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                android:text="TRAILER"
+                app:layout_constraintTop_toBottomOf="@id/btnBuy" />
+
+            <TextView
+                android:id="@+id/tvDeskripsi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Deskripsi"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageView"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:text="Producer:"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDeskripsi" />
+
+            <TextView
+                android:id="@+id/tvProducer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama Producer"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView5"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Director:"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvProducer"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp" />
+
+            <TextView
+                android:id="@+id/tvDirector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama Director"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView6"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Writer:"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDirector"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp" />
+
+            <TextView
+                android:id="@+id/tvWriter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama Writer"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView7"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp" />
+
+            <ImageView
+                android:id="@+id/clock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_access_time_24"
+                tools:layout_editor_absoluteX="203dp"
+                tools:layout_editor_absoluteY="12dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:id="@+id/tvDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="Durasi"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.15"
+                app:layout_constraintStart_toStartOf="@id/clock"
+                tools:layout_editor_absoluteY="24dp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.cardview.widget.CardView>
+
+
+
