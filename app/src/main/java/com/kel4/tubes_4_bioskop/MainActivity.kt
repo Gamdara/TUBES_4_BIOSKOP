@@ -7,6 +7,7 @@ import android.view.Menu
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.kel4.tubes_4_bioskop.R
 import com.kel4.tubes_4_bioskop.fragments.PlayingFragment
 import com.kel4.tubes_4_bioskop.fragments.TicketFragment
 import com.kel4.tubes_4_bioskop.fragments.UpcomingFragment
@@ -26,10 +27,18 @@ class MainActivity : AppCompatActivity() {
                     changeFragment(UpcomingFragment())
                 }
                 R.id.page_3 -> {
-                    changeFragment(TicketFragment())
+//                    changeFragment(TicketFragment())
+                    val builder: AlertDialog.Builder = AlertDialog.Builder(this@MainActivity)
+                    builder.setMessage("Are you sure want to exit?")
+                        .setPositiveButton("YES", object : DialogInterface.OnClickListener{
+                            override fun onClick(p0: DialogInterface?, p1: Int) {
+                                finishAndRemoveTask()
+                            }
+                        })
+                        .show()
                 }
             }
-            false
+            true
 
         }
     }

@@ -1,6 +1,5 @@
 package com.kel4.tubes_4_bioskop.fragments
 
-import android.R.attr.defaultValue
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
