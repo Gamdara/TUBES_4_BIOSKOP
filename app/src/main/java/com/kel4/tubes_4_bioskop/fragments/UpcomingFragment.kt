@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kel4.tubes_4_bioskop.R
 import com.kel4.tubes_4_bioskop.RVUpcomingAdapter
 import com.kel4.tubes_4_bioskop.entity.Movie
+import com.kel4.tubes_4_bioskop.entity.MovieList
 
 class UpcomingFragment : Fragment() {
 
@@ -24,7 +25,7 @@ class UpcomingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val layoutManager : GridLayoutManager = GridLayoutManager(context,2)
-        val adapter : RVUpcomingAdapter = RVUpcomingAdapter(Movie.listOfUpComing)
+        val adapter : RVUpcomingAdapter = RVUpcomingAdapter(MovieList.listOfUpComing)
 
         val rvUpComing : RecyclerView = view.findViewById(R.id.rv_playing)
 

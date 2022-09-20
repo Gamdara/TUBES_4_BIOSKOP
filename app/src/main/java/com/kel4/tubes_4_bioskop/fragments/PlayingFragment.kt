@@ -11,6 +11,7 @@ import com.kel4.tubes_4_bioskop.RVPlayingAdapter
 import android.view.Menu
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kel4.tubes_4_bioskop.entity.Movie
+import com.kel4.tubes_4_bioskop.entity.MovieList
 
 class PlayingFragment : Fragment(){
     lateinit var nav : Menu
@@ -27,7 +28,7 @@ class PlayingFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val layoutManager : GridLayoutManager = GridLayoutManager(context,2)
-        val adapter : RVPlayingAdapter = RVPlayingAdapter(Movie.listOfNowPlaying)
+        val adapter : RVPlayingAdapter = RVPlayingAdapter(MovieList.listOfNowPlaying)
 
         val rvPlaying : RecyclerView = view.findViewById(R.id.rv_playing)
 
