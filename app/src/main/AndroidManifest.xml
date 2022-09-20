@@ -14,7 +14,10 @@
         android:theme="@style/Theme.TUBES_4_BIOSKOP"
         tools:targetApi="31">
         <activity
-            android:name=".ProfileActivity"
+            android:name=".pages.UpdateProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pages.ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".pages.AuthActivity"

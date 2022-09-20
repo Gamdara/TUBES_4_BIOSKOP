@@ -65,6 +65,11 @@ class LoginFragment : Fragment() {
                 for (user in users){
                     Log.d("user",user.toString())
                     if((password == user.password  && username == user.username)){
+                        val sp = requireActivity().getSharedPreferences("user", 0)
+                        val editor = sp.edit()
+                        editor.putInt("id", user.id)
+                        editor.commit()
+
                         isValid = true
                         val mainIntent = Intent(getActivity(), MainActivity::class.java)
                         getActivity()?.startActivity(mainIntent)
@@ -75,11 +80,11 @@ class LoginFragment : Fragment() {
                 return@launch
             }
 
-            if(!isValid){
-                inputUsername.setError("Username atau password salah")
-                inputPassword.setError("Username atau password salah")
-                return@setOnClickListener
-            }
+//            if(!isValid){
+//                inputUsername.setError("Username atau password salah")
+//                inputPassword.setError("Username atau password salah")
+//                return@setOnClickListener
+//            }
 
         }
 
