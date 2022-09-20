@@ -26,7 +26,7 @@ class Movie(var judul: String, var rating: Int ,var sinopsis: String, var direct
         val puss : Movie = Movie("Puss in Boots: The Last Wish", 4, "sinopsis", "director", "writter", R.drawable.poster_puss)
         val flash : Movie = Movie("The Flash", 4, "sinopsis", "director", "writter", R.drawable.poster_flash)
         val medieval : Movie = Movie("Medieval", 4, "sinopsis", "director", "writter", R.drawable.poster_medieval)
-        val amsterdam : Movie = Movie("Amsterdam 2022", 4, "sinopsis", "director", "writter", R.drawable.poster_amsterdam)
+        val amsterdam : Movie = Movie("Amsterdam 2022 Test", 4, "sinopsis", "director", "writter", R.drawable.poster_amsterdam)
 
 
 
