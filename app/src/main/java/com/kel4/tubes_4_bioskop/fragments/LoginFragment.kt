@@ -13,6 +13,11 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.textfield.TextInputLayout
 import com.kel4.tubes_4_bioskop.MainActivity
 import com.kel4.tubes_4_bioskop.R
+import com.kel4.tubes_4_bioskop.entity.User
+import com.rama.gdroom_a_10735.room.UserDB
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class LoginFragment : Fragment() {
@@ -30,16 +35,17 @@ class LoginFragment : Fragment() {
         inputUsername = view.findViewById(R.id.tilUsername)
         inputPassword = view.findViewById(R.id.tilPassword)
 
-        val args = this.arguments
+//        val args = this.arguments
 
-        Log.d("args",args.toString())
-
-        val user : String? = args?.getString("username", "gaada")
-        inputUsername.getEditText()?.setText(user)
-        val pass : String? = args?.getString("password", "gaada")
+///        Log.d("args",args.toString())
+//
+//        val user : String? = args?.getString("username", "gaada")
+//        inputUsername.getEditText()?.setText(user)
+//        val pass : String? = args?.getString("password", "gaada")
 
         val button : Button = view.findViewById<Button>(R.id.button)
         button.setOnClickListener{
+            val db by lazy { UserDB(requireContext()) }
 
             var username : String = inputUsername?.getEditText()?.getText().toString();
             var password : String = inputPassword?.getEditText()?.getText().toString();
@@ -53,17 +59,33 @@ class LoginFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            if((password == pass  && username == user)){
-                val mainIntent = Intent(getActivity(), MainActivity::class.java)
-                getActivity()?.startActivity(mainIntent)
-                getActivity()?.finish()
-                return@setOnClickListener
+            var isValid : Boolean = false
+            CoroutineScope(Dispatchers.IO).launch {
+                val users : List<User> = db.noteDao().getUsers()
+                for (user in users){
+                    Log.d("user",user.toString())
+                    if((password == user.password  && username == user.username)){
+                        val sp = requireActivity().getSharedPreferences("user", 0)
+                        val editor = sp.edit()
+                        editor.putInt("id", user.id)
+                        editor.commit()
+
+                        isValid = true
+                        val mainIntent = Intent(getActivity(), MainActivity::class.java)
+                        getActivity()?.startActivity(mainIntent)
+                        getActivity()?.finish()
+                    }
+
+                }
+                return@launch
             }
 
-            else{
-                inputUsername.setError("Username atau password salah")
-                inputPassword.setError("Username atau password salah")
-            }
+//            if(!isValid){
+//                inputUsername.setError("Username atau password salah")
+//                inputPassword.setError("Username atau password salah")
+//                return@setOnClickListener
+//            }
+
         }
 
         val buttonReset : Button = view.findViewById<Button>(R.id.buttonReset)
