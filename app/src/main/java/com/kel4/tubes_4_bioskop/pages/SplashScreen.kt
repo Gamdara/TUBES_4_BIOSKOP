@@ -14,7 +14,6 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
         Handler().postDelayed(Runnable {
-            Log.d("mau","adaw")
             val mainIntent = Intent(this, AuthActivity::class.java)
             this.startActivity(mainIntent)
             this.finish()
