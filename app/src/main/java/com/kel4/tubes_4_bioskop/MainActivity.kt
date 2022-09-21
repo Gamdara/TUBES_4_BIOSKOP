@@ -1,9 +1,11 @@
 package com.kel4.tubes_4_bioskop
 
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -11,6 +13,8 @@ import com.kel4.tubes_4_bioskop.R
 import com.kel4.tubes_4_bioskop.fragments.PlayingFragment
 import com.kel4.tubes_4_bioskop.fragments.TicketFragment
 import com.kel4.tubes_4_bioskop.fragments.UpcomingFragment
+import com.kel4.tubes_4_bioskop.pages.AuthActivity
+import com.kel4.tubes_4_bioskop.pages.ProfileActivity
 
 class MainActivity : AppCompatActivity() {
     lateinit var nav : Menu
@@ -40,6 +44,11 @@ class MainActivity : AppCompatActivity() {
             }
             true
 
+        }
+        val btnProfile = findViewById<ImageView>(R.id.profileButton)
+        btnProfile.setOnClickListener(){
+            val mainIntent = Intent(this, ProfileActivity::class.java)
+            this.startActivity(mainIntent)
         }
     }
 

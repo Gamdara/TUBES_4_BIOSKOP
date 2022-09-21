@@ -1,7 +1,6 @@
 package com.kel4.tubes_4_bioskop.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,46 +8,67 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.FragmentTransaction
-import com.google.android.material.textfield.TextInputLayout
 import com.kel4.tubes_4_bioskop.R
+import com.kel4.tubes_4_bioskop.databinding.FragmentSignupBinding
+import com.kel4.tubes_4_bioskop.entity.User
+import com.rama.gdroom_a_10735.room.UserDB
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class SignupFragment : Fragment() {
-    private lateinit var inputUsername : TextInputLayout
-    private lateinit var inputPassword : TextInputLayout
-    private lateinit var inputEmail : TextInputLayout
-    private lateinit var inputDate : TextInputLayout
-    private lateinit var inputPhone : TextInputLayout
+    private var _binding: FragmentSignupBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var view : View = inflater.inflate(R.layout.fragment_signup, container, false)
+        _binding = FragmentSignupBinding.inflate(inflater, container, false)
+        var view : View = binding.root
         val button : Button = view.findViewById<Button>(R.id.button)
-        button.setOnClickListener{
-            inputUsername = requireView().findViewById(R.id.tilUsername)
-            inputPassword = requireView().findViewById(R.id.tilPassword)
-
-            val username : String = inputUsername?.getEditText()?.getText().toString()
-            val password : String = inputPassword?.getEditText()?.getText().toString()
+        binding.button.setOnClickListener {
+            val db by lazy { UserDB(requireContext()) }
+            val username : String = binding.tilUsername?.getEditText()?.getText().toString()
+            val password : String = binding.tilPassword?.getEditText()?.getText().toString()
             if(username.isEmpty()) {
-                inputUsername.setError("Username tidak boleh kosong")
+                binding.tilUsername.setError("Username tidak boleh kosong")
                 return@setOnClickListener
             }
             if(password.isEmpty()) {
-                inputPassword.setError("Password tidak boleh kosong")
+                binding.tilPassword.setError("Password tidak boleh kosong")
                 return@setOnClickListener
             }
-            val fragment : Fragment = LoginFragment()
-            val ft: FragmentTransaction = getParentFragmentManager().beginTransaction()
-            val bundle = Bundle()
-            bundle.putString("username",username); // use as per your need
-            bundle.putString("password",password); // use as per your need
-            Log.d("bundle",bundle.getString("username").toString())
-            fragment.setArguments(bundle);
-            ft.addToBackStack(null);
-            ft.replace(R.id.fragmentContainerView, fragment)
-            ft.commit()
+            if(binding.tilEmail.editText?.text.toString().isEmpty()) {
+                binding.tilEmail.setError("Email tidak boleh kosong")
+                return@setOnClickListener
+            }
+            if(binding.tilTanggal.editText?.text.toString().isEmpty()) {
+                binding.tilTanggal.setError("Tanggal tidak boleh kosong")
+                return@setOnClickListener
+            }
+            if(binding.tilTelp.editText?.text.toString().isEmpty()) {
+                binding.tilTelp.setError("Nomor telepon tidak boleh kosong")
+                return@setOnClickListener
+            }
+
+            CoroutineScope(Dispatchers.IO).launch {
+                db.noteDao().addUser(
+                    User(0,
+                        username,
+                        password,
+                        binding.tilEmail.editText?.text.toString(),
+                        binding.tilTanggal.editText?.text.toString(),
+                        binding.tilTelp.editText?.text.toString()
+                    )
+                )
+                val fragment : Fragment = LoginFragment()
+                val ft: FragmentTransaction = getParentFragmentManager().beginTransaction()
+                ft.addToBackStack(null);
+                ft.replace(R.id.fragmentContainerView, fragment)
+                ft.commit()
+            }
+
         }
 
         val tvLogin : TextView = view.findViewById<TextView>(R.id.tvLogin)
@@ -58,5 +78,10 @@ class SignupFragment : Fragment() {
             ft.commit()
         }
         return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
