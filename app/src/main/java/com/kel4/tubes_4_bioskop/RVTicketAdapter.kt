@@ -1,16 +1,19 @@
 package com.kel4.tubes_4_bioskop
 
+import android.os.Build
+import android.text.method.TextKeyListener.clear
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.kel4.tubes_4_bioskop.entity.Ticket
 import com.kel4.tubes_4_bioskop.fragments.TicketFragment
+import java.util.Collections.addAll
+
 
 class RVTicketAdapter(private var data: Array<Ticket>) : RecyclerView.Adapter<RVTicketAdapter.viewHolder>() {
 
@@ -26,12 +29,20 @@ class RVTicketAdapter(private var data: Array<Ticket>) : RecyclerView.Adapter<RV
         holder.time.text = currenItem.time
         holder.seat.text = currenItem.seat
         holder.delete.setOnClickListener(){
-            Ticket.remove(data, position)
-
+            Ticket.remove(Ticket.listOfTicket, position)
+            notifyItemChanged(position)
+            setData(Ticket.listOfTicket)
+            notifyDataSetChanged()
         }
 
     }
 
+    fun setData(data2: Array<Ticket>) {
+        val result = data.toMutableList()
+        result.clear()
+        result.addAll(data2)
+        data = result.toTypedArray()
+    }
     override fun getItemCount() : Int{
         return data.size
     }
