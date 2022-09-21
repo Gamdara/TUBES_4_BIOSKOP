@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.kel4.tubes_4_bioskop.entity.Ticket
+import com.kel4.tubes_4_bioskop.fragments.TicketFragment
 
 class RVTicketAdapter(private var data: Array<Ticket>) : RecyclerView.Adapter<RVTicketAdapter.viewHolder>() {
 
@@ -26,6 +27,7 @@ class RVTicketAdapter(private var data: Array<Ticket>) : RecyclerView.Adapter<RV
         holder.seat.text = currenItem.seat
         holder.delete.setOnClickListener(){
             Ticket.remove(data, position)
+
         }
 
     }
@@ -41,4 +43,7 @@ class RVTicketAdapter(private var data: Array<Ticket>) : RecyclerView.Adapter<RV
         val seat : TextView = itemView.findViewById(R.id.tvSeat)
         val delete: Button = itemView.findViewById(R.id.btnDelete)
     }
+
+
+
 }

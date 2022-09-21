@@ -1,5 +1,8 @@
 package com.kel4.tubes_4_bioskop.entity
 
+import android.app.PendingIntent.getActivity
+import android.content.Intent
+import com.kel4.tubes_4_bioskop.MainActivity
 import com.kel4.tubes_4_bioskop.entity.MovieList.listOfNowPlaying
 
 class Ticket (var movie: Movie, var seat: String, var time: String) {
