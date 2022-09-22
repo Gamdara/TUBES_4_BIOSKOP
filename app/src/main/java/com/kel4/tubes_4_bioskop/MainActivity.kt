@@ -15,9 +15,12 @@ import com.kel4.tubes_4_bioskop.fragments.TicketFragment
 import com.kel4.tubes_4_bioskop.fragments.UpcomingFragment
 import com.kel4.tubes_4_bioskop.pages.AuthActivity
 import com.kel4.tubes_4_bioskop.pages.ProfileActivity
+import com.kel4.tubes_4_bioskop.pages.TicketActivity
+import kotlinx.android.synthetic.main.rv_item_movie.view.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var nav : Menu
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -43,6 +46,13 @@ class MainActivity : AppCompatActivity() {
             val mainIntent = Intent(this, ProfileActivity::class.java)
             this.startActivity(mainIntent)
         }
+
+        val imageAdd = findViewById<ImageView>(R.id.imageAdd)
+        imageAdd.setOnClickListener(){
+            val ticketIntent = Intent(this, TicketActivity::class.java)
+            this.startActivity(ticketIntent)
+        }
+
         val btnLogout = findViewById<ImageView>(R.id.logoutButton)
         btnLogout.setOnClickListener(){
             val builder: AlertDialog.Builder = AlertDialog.Builder(this@MainActivity)

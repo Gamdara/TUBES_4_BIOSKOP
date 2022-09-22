@@ -27,7 +27,7 @@ class PlayingFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val layoutManager : GridLayoutManager = GridLayoutManager(context,2)
-        val adapter : RVPlayingAdapter = RVPlayingAdapter(MovieList.listOfNowPlaying, this)
+        val adapter : RVPlayingAdapter = RVPlayingAdapter(MovieList.listOfNowPlaying)
 
         val rvPlaying : RecyclerView = view.findViewById(R.id.rv_playing)
 
