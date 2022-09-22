@@ -7,8 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.kel4.tubes_4_bioskop.entity.Movie
+import com.kel4.tubes_4_bioskop.fragments.PlayingFragment
 
-class RVPlayingAdapter(private val data: Array<Movie>) : RecyclerView.Adapter<RVPlayingAdapter.viewHolder>() {
+class RVPlayingAdapter(private val data: Array<Movie>
+) : RecyclerView.Adapter<RVPlayingAdapter.viewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder{
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.rv_item_movie, parent,false)
@@ -30,4 +32,5 @@ class RVPlayingAdapter(private val data: Array<Movie>) : RecyclerView.Adapter<RV
         val image : ImageView = itemView.findViewById((R.id.imageView))
 
     }
+
 }

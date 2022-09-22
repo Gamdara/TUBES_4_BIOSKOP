@@ -77,10 +77,11 @@ class LoginFragment : Fragment() {
                     }
 
                 }
+
                 return@launch
             }
 
-//            if(!isValid){
+//            if(isValid){
 //                inputUsername.setError("Username atau password salah")
 //                inputPassword.setError("Username atau password salah")
 //                return@setOnClickListener
