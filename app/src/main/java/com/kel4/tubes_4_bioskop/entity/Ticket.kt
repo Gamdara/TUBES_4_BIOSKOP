@@ -20,6 +20,20 @@ class Ticket (var movie: Movie, var seat: String, var time: String) {
             result.removeAt(index)
             listOfTicket = result.toTypedArray()
         }
+
+        fun add(movie: Movie) {
+
+            val result = listOfTicket.toMutableList()
+            val add = Ticket(movie,"2D","18:30")
+            result+=add
+            listOfTicket = result.toTypedArray()
+        }
+
+        fun edit(new : Ticket, position:Int) {
+            listOfTicket[position] = new
+        }
+
+
     }
 
 

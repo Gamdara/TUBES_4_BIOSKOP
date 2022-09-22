@@ -1,5 +1,6 @@
 package com.kel4.tubes_4_bioskop
 
+import android.content.Intent
 import android.os.Build
 import android.text.method.TextKeyListener.clear
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.kel4.tubes_4_bioskop.entity.Ticket
 import com.kel4.tubes_4_bioskop.fragments.TicketFragment
+import com.kel4.tubes_4_bioskop.pages.ProfileActivity
 import java.util.Collections.addAll
 
 
@@ -34,6 +36,9 @@ class RVTicketAdapter(private var data: Array<Ticket>) : RecyclerView.Adapter<RV
             setData(Ticket.listOfTicket)
             notifyDataSetChanged()
         }
+        holder.edit.setOnClickListener(){
+   //         TicketFragment.edit(Ticket.listOfTicket, position)
+        }
 
     }
 
@@ -53,6 +58,7 @@ class RVTicketAdapter(private var data: Array<Ticket>) : RecyclerView.Adapter<RV
         val time : TextView = itemView.findViewById(R.id.tvJam)
         val seat : TextView = itemView.findViewById(R.id.tvSeat)
         val delete: Button = itemView.findViewById(R.id.btnDelete)
+        val edit: Button = itemView.findViewById(R.id.btnEdit)
     }
 
 
