@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
                 android:hint="Nama Movie"
-                android:textColor="@color/gray_300"
+                android:textColor="@color/black"
                 android:textSize="16dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,7 +57,7 @@
 
                 android:fontFamily="@font/poppins"
                 android:hint="Jam"
-                android:textColor="@color/gray_300"
+                android:textColor="@color/black"
                 android:textSize="16dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,11 +79,22 @@
 
                 android:fontFamily="@font/poppins"
                 android:hint="Kursi"
-                android:textColor="@color/gray_300"
+                android:textColor="@color/black"
                 android:textSize="16dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/eye"
+        android:layout_width="85dp"
+        android:layout_height="89dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.143"
+        app:srcCompat="@drawable/ic_eye_24" />
 
     <Button
         android:id="@+id/btnSubmit"

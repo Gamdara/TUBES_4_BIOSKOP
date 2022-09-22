@@ -31,6 +31,11 @@ class Ticket (var movie: Movie, var seat: String, var time: String) {
             return list.toTypedArray()
         }
 
+        fun index(movie: Movie): Int {
+            val index = listOfNowPlaying.indexOf(movie)
+            return index
+        }
+
     }
 
 
