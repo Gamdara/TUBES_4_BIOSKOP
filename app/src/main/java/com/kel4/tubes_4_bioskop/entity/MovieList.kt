@@ -35,4 +35,14 @@ object MovieList {
     var listOfUpComing = arrayOf<Movie>(
         avatar, blackPanther, blackAdam, onePiece, pinocchio, disenchanted, puss, flash, medieval, amsterdam
     )
+
+    fun find(judul: String): Movie{
+        var movie : Movie = ngeriNgeriSedap
+        for(innerArray in MovieList.listOfNowPlaying){
+            if(innerArray.judul == judul){
+                movie = innerArray
+            }
+        }
+        return movie
+    }
 }

@@ -6,18 +6,25 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat.recreate
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kel4.tubes_4_bioskop.MainActivity
 import com.kel4.tubes_4_bioskop.R
 import com.kel4.tubes_4_bioskop.RVTicketAdapter
 import com.kel4.tubes_4_bioskop.entity.Ticket
+import com.kel4.tubes_4_bioskop.pages.ProfileActivity
 
 class TicketFragment : Fragment() {
 
     lateinit var nav : Menu
+
+   // companion object{
+ //       fun edit(arr: Array<Ticket>, index: Int){
+//          val mainIntent = Intent(this, TicketActivity(arr, index)::class.java)
+//            startActivity(mainIntent)
+  //      }
+
+ //   }
 
     fun refresh(){
         val ft = parentFragmentManager.beginTransaction()

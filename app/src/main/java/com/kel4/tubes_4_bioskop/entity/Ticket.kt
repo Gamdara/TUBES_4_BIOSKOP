@@ -2,11 +2,8 @@ package com.kel4.tubes_4_bioskop.entity
 
 import android.app.PendingIntent.getActivity
 import android.content.Intent
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.kel4.tubes_4_bioskop.MainActivity
 import com.kel4.tubes_4_bioskop.entity.MovieList.listOfNowPlaying
-
 
 class Ticket (var movie: Movie, var seat: String, var time: String) {
     companion object{
@@ -24,17 +21,18 @@ class Ticket (var movie: Movie, var seat: String, var time: String) {
             listOfTicket = result.toTypedArray()
         }
 
+        fun add(movie: Movie) {
 
-        fun add(arr: Array<Ticket>,movie: Movie, seat: String, time: String): Array<Ticket> {
-            val list = arr.toMutableList()
-            list.add(Ticket(movie,seat,time))
-            return list.toTypedArray()
+            val result = listOfTicket.toMutableList()
+            val add = Ticket(movie,"2D","18:30")
+            result+=add
+            listOfTicket = result.toTypedArray()
         }
 
-        fun index(movie: Movie): Int {
-            val index = listOfNowPlaying.indexOf(movie)
-            return index
+        fun edit(new : Ticket, position:Int) {
+            listOfTicket[position] = new
         }
+
 
     }
 

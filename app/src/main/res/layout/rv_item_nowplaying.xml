@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="188dp"
-    android:layout_height="250dp"
+    android:layout_height="300dp"
     android:layout_margin="5dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp">
@@ -35,7 +35,7 @@
                 android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="32dp"
                 android:fontFamily="sans-serif"
                 android:text="Judul"
                 android:textAlignment="center"
@@ -46,7 +46,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-
+            <Button
+                android:id="@+id/btnBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BELI"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvJudul"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                tools:layout_editor_absoluteX="21dp"
+                tools:layout_editor_absoluteY="246dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
