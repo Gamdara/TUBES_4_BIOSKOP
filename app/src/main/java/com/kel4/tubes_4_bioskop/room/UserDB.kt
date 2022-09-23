@@ -4,14 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.kel4.tubes_4_bioskop.entity.Ticket
 import com.kel4.tubes_4_bioskop.entity.User
 
 @Database(
-    entities = [User::class],
-    version = 1
+    entities = [User::class, Ticket::class],
+    version = 2
 )
 abstract class UserDB: RoomDatabase() {
     abstract fun noteDao() : UserDao
+    abstract fun ticketDao() : TicketDao
+
     companion object {
         @Volatile private var instance : UserDB? = null
         private val LOCK = Any()
@@ -26,6 +29,7 @@ abstract class UserDB: RoomDatabase() {
                 context.applicationContext,
                 UserDB::class.java,
                 "user12345.db"
-            ).build()
+            ).fallbackToDestructiveMigration()
+                .build()
     }
 }

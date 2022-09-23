@@ -6,25 +6,21 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kel4.tubes_4_bioskop.MainActivity
 import com.kel4.tubes_4_bioskop.R
 import com.kel4.tubes_4_bioskop.RVTicketAdapter
 import com.kel4.tubes_4_bioskop.entity.Ticket
+import com.kel4.tubes_4_bioskop.entity.User
 import com.kel4.tubes_4_bioskop.pages.ProfileActivity
+import com.rama.gdroom_a_10735.room.UserDB
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class TicketFragment : Fragment() {
-
-    lateinit var nav : Menu
-
-   // companion object{
- //       fun edit(arr: Array<Ticket>, index: Int){
-//          val mainIntent = Intent(this, TicketActivity(arr, index)::class.java)
-//            startActivity(mainIntent)
-  //      }
-
- //   }
 
     fun refresh(){
         val ft = parentFragmentManager.beginTransaction()
@@ -42,16 +38,19 @@ class TicketFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val layoutManager = LinearLayoutManager(context)
-        val adapter : RVTicketAdapter = RVTicketAdapter(Ticket.listOfTicket)
+        val db by lazy { UserDB(requireContext()) }
 
-        val rvPlaying : RecyclerView = view.findViewById(R.id.rv_ticket)
+        CoroutineScope(Dispatchers.IO).launch {
+            val tickets = db.ticketDao().getTickets()
+            val adapter : RVTicketAdapter = RVTicketAdapter(tickets.toTypedArray())
+            val rvPlaying : RecyclerView = view.findViewById(R.id.rv_ticket)
+            rvPlaying.layoutManager = layoutManager
+            rvPlaying.setHasFixedSize(true)
+            rvPlaying.adapter = adapter
+            refresh()
+        }
 
-        rvPlaying.layoutManager = layoutManager
-
-        rvPlaying.setHasFixedSize(true)
-
-        rvPlaying.adapter = adapter
-        refresh()
     }
+
 
 }

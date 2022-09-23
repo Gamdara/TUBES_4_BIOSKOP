@@ -1,43 +1,74 @@
 package com.kel4.tubes_4_bioskop
 
+import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
-import android.os.Build
-import android.text.method.TextKeyListener.clear
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
+import com.kel4.tubes_4_bioskop.constant.Constant
+import com.kel4.tubes_4_bioskop.entity.MovieList
 import com.kel4.tubes_4_bioskop.entity.Ticket
-import com.kel4.tubes_4_bioskop.fragments.TicketFragment
-import com.kel4.tubes_4_bioskop.pages.ProfileActivity
-import java.util.Collections.addAll
+import com.kel4.tubes_4_bioskop.pages.EditTicketActivity
+import com.rama.gdroom_a_10735.room.UserDB
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class RVTicketAdapter(private var data: Array<Ticket>) : RecyclerView.Adapter<RVTicketAdapter.viewHolder>() {
-
+    private var context: Context? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder{
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.rv_item_ticket, parent,false)
+        context = itemView.getContext();
         return viewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: viewHolder, position: Int){
+        val tickets = MovieList.listOfNowPlaying
         val currenItem = data[position]
-        holder.tvJudul.text = currenItem.movie.judul
-        holder.image.setImageResource(currenItem.movie.poster)
+
+        holder.tvJudul.text = tickets[currenItem.movie].judul
+        holder.image.setImageResource(tickets[currenItem.movie].poster)
         holder.time.text = currenItem.time
         holder.seat.text = currenItem.seat
         holder.delete.setOnClickListener(){
-            Ticket.remove(Ticket.listOfTicket, position)
-            notifyItemChanged(position)
-            setData(Ticket.listOfTicket)
-            notifyDataSetChanged()
+            val alertDialog = AlertDialog.Builder(context)
+            alertDialog.apply {
+                setTitle("Confirmation")
+                setMessage("Yakin ingin menghapus?")
+                setNegativeButton("Cancel", DialogInterface.OnClickListener
+                { dialogInterface, i ->
+                    dialogInterface.dismiss()
+                })
+                setPositiveButton("Delete", DialogInterface.OnClickListener
+                { dialogInterface, i ->
+                    val db by lazy { UserDB(context) }
+                    dialogInterface.dismiss()
+                    CoroutineScope(Dispatchers.IO).launch {
+                        db.ticketDao().delete(currenItem)
+                        setData(db.ticketDao().getTickets().toTypedArray())
+                        notifyItemChanged(position)
+                        notifyDataSetChanged()
+                    }
+                })
+            }
+            alertDialog.show()
         }
         holder.edit.setOnClickListener(){
-   //         TicketFragment.edit(Ticket.listOfTicket, position)
+            context?.startActivity(
+                Intent(context, EditTicketActivity::class.java)
+                    .putExtra("intent_id", currenItem.id)
+                    .putExtra("intent_type", Constant.TYPE_UPDATE)
+                    .putExtra("movie_id", currenItem.movie)
+            )
+            notifyItemChanged(position)
+            notifyDataSetChanged()
         }
 
     }
@@ -48,6 +79,7 @@ class RVTicketAdapter(private var data: Array<Ticket>) : RecyclerView.Adapter<RV
         result.addAll(data2)
         data = result.toTypedArray()
     }
+
     override fun getItemCount() : Int{
         return data.size
     }
