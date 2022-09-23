@@ -1,8 +1,10 @@
 package com.kel4.tubes_4_bioskop.pages
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.kel4.tubes_4_bioskop.MainActivity
 import com.kel4.tubes_4_bioskop.R
 import com.kel4.tubes_4_bioskop.entity.MovieList
 import com.kel4.tubes_4_bioskop.entity.Ticket
@@ -66,6 +68,7 @@ class EditTicketActivity : AppCompatActivity() {
                         edit_time.text.toString(),
                     )
                 )
+                startActivity(Intent(this@EditTicketActivity, MainActivity::class.java))
                 finish()
             }
         }
