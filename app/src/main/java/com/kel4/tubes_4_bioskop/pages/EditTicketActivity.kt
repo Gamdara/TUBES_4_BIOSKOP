@@ -66,18 +66,16 @@ class EditTicketActivity : AppCompatActivity() {
     private fun setupListener() {
 
         button_save.setOnClickListener{
-        createNotificationChannel()
+            var temp :Ticket =Ticket(0,movieId, edit_kursi.text.toString(), edit_time.text.toString())
+                createNotificationChannel()
             CoroutineScope(Dispatchers.IO).launch {
                 db.ticketDao().add(
-                    Ticket(0,movieId,
-                        edit_kursi.text.toString(),
-                        edit_time.text.toString(),
-                    )
+                    temp
                 )
 
                 finish()
             }
-            sendNotification()
+            sendNotification(temp)
         }
         button_update.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
@@ -121,24 +119,17 @@ class EditTicketActivity : AppCompatActivity() {
         }
     }
 
-    private fun  sendNotification(){
+    private fun  sendNotification(ticket: Ticket){
         val builder = NotificationCompat.Builder(this, CHANNEL_BUY)
             .setSmallIcon(R.drawable.ic_baseline_notifications_24)
             .setContentTitle("Pembelian Berhasil")
+            .setContentText("Tiket berhasil dibeli")
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setStyle(NotificationCompat.BigTextStyle()
-                .bigText("fkdljfdldkfj;ldaksjfkladj;flja;lkjdfljadslfjaddfdsfafjdfad" +
-                        "fdl;akjf;lkdf;lkaj;flkjda;lkfjadljflk;adsjfladjflk;dfjlkdjflakdfjdaffjdlfjdjjj" +
-                        "adjflkjadlkfjad;lkfjad;sljf;ladkjajlkfjad;lksfjl;akdjf;lkdsajf;lkdjfkadj;flkad" +
-                        "jf;lkadjfkldas;lkfja;dljf;lkdasjf;lkadjs;lfjas;ldkfj;lkadsjfl;kadljfl;kasdjf;l" +
-                        "jdlskfjklda;fjadslkfj;sdalkfj;ladjf;lajdl;fkajld;kfjlajfl;adjfl;kajdl;fjadl;kfj;")
-                .setSummaryText("Big Summary")
-                .setBigContentTitle("BIGSTYLEAAAAAAAAAAAAAAAAAAAAAAAA"))
-            .setStyle(NotificationCompat.InboxStyle()
-                .addLine("Anda telah berhasil membeli")
-                .addLine("Anda telah berhasil membeli2")
-                .addLine("Anda telah berhasil membeli3")
-                .setSummaryText("+3 more"))
+                .bigText("Film ini akan tayang jam "+ ticket.time +" dan "+ "Anda akan duduk di: "+ticket.seat+"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum")
+                .setSummaryText("Rincian Tiket")
+                .setBigContentTitle(ticket.movie.toString())
+            )
 
 
 
