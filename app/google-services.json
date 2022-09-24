@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "142058627471",
+    "project_id": "tubes-4-bioskop",
+    "storage_bucket": "tubes-4-bioskop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142058627471:android:edf8130d4820fdabfaabfa",
+        "android_client_info": {
+          "package_name": "com.kel4.tubes_4_bioskop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "142058627471-vplhcjdhasrleq77jkpd16kmtqekhe72.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdp9qkEDYsJvBg2eIicVUkviCpk_XvaME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "142058627471-vplhcjdhasrleq77jkpd16kmtqekhe72.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
