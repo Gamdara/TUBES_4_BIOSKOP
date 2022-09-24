@@ -36,12 +36,13 @@ class LoginFragment : Fragment() {
         inputPassword = view.findViewById(R.id.tilPassword)
 
 //        val args = this.arguments
-
-///        Log.d("args",args.toString())
+        val extras = activity?.intent?.extras
+        Log.d("extras",extras.toString())
 //
-//        val user : String? = args?.getString("username", "gaada")
-//        inputUsername.getEditText()?.setText(user)
-//        val pass : String? = args?.getString("password", "gaada")
+        val user : String? = extras?.getString("username", "gaada")
+        inputUsername.getEditText()?.setText(user)
+        val pass : String? = extras?.getString("password", "gaada")
+        inputPassword.getEditText()?.setText(pass)
 
         val button : Button = view.findViewById<Button>(R.id.button)
         button.setOnClickListener{

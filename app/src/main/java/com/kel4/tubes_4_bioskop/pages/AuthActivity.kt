@@ -11,7 +11,7 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         getSupportActionBar()?.hide()
         setContentView(R.layout.activity_auth)
-
+        Log.d("extras",intent?.extras.toString())
     }
 
     fun changeFragment(fragment: Fragment?) {
