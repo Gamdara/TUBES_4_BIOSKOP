@@ -39,10 +39,15 @@ android {
     buildFeatures{
         dataBinding = true
     }
+
+    viewBinding{
+        enabled=true
+    }
 }
 
 dependencies {
     implementation 'com.google.firebase:firebase-messaging-ktx:23.0.8'
+    implementation 'com.google.firebase:firebase-messaging:23.0.8'
     def room_version = "2.4.3"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
