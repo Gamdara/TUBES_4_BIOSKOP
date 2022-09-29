@@ -14,9 +14,11 @@
         android:theme="@style/Theme.TUBES_4_BIOSKOP"
         tools:targetApi="31">
         <activity
+            android:name=".MovieDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".pages.EditTicketActivity"
             android:exported="false" />
-
         <activity
             android:name=".pages.UpdateProfileActivity"
             android:exported="false" />
@@ -38,14 +40,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
             android:name=".notification.MyFirebaseMessagingService"
-            android:exported="false"
-            >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <receiver android:name=".notification.NotificationReceiver" />
     </application>
 

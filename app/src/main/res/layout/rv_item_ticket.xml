@@ -89,7 +89,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.709" />
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -98,9 +98,9 @@
                 app:layout_constraintStart_toEndOf="@id/imageView"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp">
-            </Button>
+            </com.google.android.material.button.MaterialButton>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -109,7 +109,7 @@
                 app:layout_constraintStart_toEndOf="@id/btnDelete"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp">
-            </Button>
+            </com.google.android.material.button.MaterialButton>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

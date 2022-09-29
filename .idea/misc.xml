@@ -38,8 +38,12 @@
         <entry key="..\:/Kuliah/KULIAH/Semester 5/Selasa/3 - 4 - INFT28504 - Pemrograman Berbasis Platform/Tubes/app/src/main/res/layout/rv_item_nowplaying.xml" value="0.15172101449275363" />
         <entry key="..\:/Kuliah/KULIAH/Semester 5/Selasa/3 - 4 - INFT28504 - Pemrograman Berbasis Platform/Tubes/app/src/main/res/layout/rv_movie.xml" value="0.15172101449275363" />
         <entry key="..\:/Kuliah/KULIAH/Semester 5/Selasa/3 - 4 - INFT28504 - Pemrograman Berbasis Platform/Tubes/app/src/main/res/menu/bottom_nav.xml" value="0.10989583333333333" />
-        <entry key="..\:/UAJY/SEM5/PRAKTIKUM PEMROGAMAN BERBASIS PLATFORM/TUBES_4_BIOSKOP/TUBES_4_BIOSKOP/app/src/main/res/layout/activity_edit_ticket.xml" value="0.176" />
+        <entry key="..\:/UAJY/SEM5/PRAKTIKUM PEMROGAMAN BERBASIS PLATFORM/TUBES_4_BIOSKOP/TUBES_4_BIOSKOP/app/src/main/res/layout/activity_auth.xml" value="0.22826086956521738" />
+        <entry key="..\:/UAJY/SEM5/PRAKTIKUM PEMROGAMAN BERBASIS PLATFORM/TUBES_4_BIOSKOP/TUBES_4_BIOSKOP/app/src/main/res/layout/activity_edit_ticket.xml" value="0.1" />
+        <entry key="..\:/UAJY/SEM5/PRAKTIKUM PEMROGAMAN BERBASIS PLATFORM/TUBES_4_BIOSKOP/TUBES_4_BIOSKOP/app/src/main/res/layout/activity_movie_detail.xml" value="0.25416666666666665" />
         <entry key="..\:/UAJY/SEM5/PRAKTIKUM PEMROGAMAN BERBASIS PLATFORM/TUBES_4_BIOSKOP/TUBES_4_BIOSKOP/app/src/main/res/layout/fragment_movie_detail.xml" value="0.22826086956521738" />
+        <entry key="..\:/UAJY/SEM5/PRAKTIKUM PEMROGAMAN BERBASIS PLATFORM/TUBES_4_BIOSKOP/TUBES_4_BIOSKOP/app/src/main/res/layout/rv_item_nowplaying.xml" value="0.22826086956521738" />
+        <entry key="..\:/UAJY/SEM5/PRAKTIKUM PEMROGAMAN BERBASIS PLATFORM/TUBES_4_BIOSKOP/TUBES_4_BIOSKOP/app/src/main/res/layout/rv_item_upcoming.xml" value="0.1" />
       </map>
     </option>
   </component>

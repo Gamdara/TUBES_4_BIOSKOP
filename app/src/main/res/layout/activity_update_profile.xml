@@ -151,7 +151,7 @@
 
     </LinearLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSimpan"
         style="@style/ThemeOverlay.Material3.Button.TextButton"
         android:layout_width="match_parent"
