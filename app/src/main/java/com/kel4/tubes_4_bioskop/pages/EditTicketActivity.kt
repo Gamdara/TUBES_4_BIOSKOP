@@ -42,7 +42,7 @@ class EditTicketActivity : AppCompatActivity() {
         setupListener()
     }
     fun setupView(){
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
         val intentType = intent.getIntExtra("intent_type", 0)
         movieId = intent.getIntExtra("movie_id", 0)
         val movie = MovieList.listOfNowPlaying[movieId]

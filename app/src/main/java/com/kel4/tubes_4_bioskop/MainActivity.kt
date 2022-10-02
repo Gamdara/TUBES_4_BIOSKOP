@@ -36,22 +36,7 @@ class MainActivity : AppCompatActivity() {
             true
 
         }
-        val btnProfile = findViewById<ImageView>(R.id.profileButton)
-        btnProfile.setOnClickListener(){
-            val mainIntent = Intent(this, ProfileActivity::class.java)
-            this.startActivity(mainIntent)
-        }
-        val btnLogout = findViewById<ImageView>(R.id.logoutButton)
-        btnLogout.setOnClickListener(){
-            val builder: AlertDialog.Builder = AlertDialog.Builder(this@MainActivity)
-            builder.setMessage("Are you sure want to exit?")
-                .setPositiveButton("YES", object : DialogInterface.OnClickListener{
-                    override fun onClick(p0: DialogInterface?, p1: Int) {
-                        finishAndRemoveTask()
-                    }
-                })
-                .show()
-        }
+        
     }
 
 
