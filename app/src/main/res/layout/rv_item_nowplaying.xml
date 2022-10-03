@@ -44,7 +44,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBuy"
             style="@style/ThemeOverlay.Material3.Button.TextButton"
             android:layout_width="match_parent"
@@ -61,7 +61,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvJudul" />
+            app:layout_constraintTop_toBottomOf="@+id/tvJudul">
+        </com.google.android.material.button.MaterialButton>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

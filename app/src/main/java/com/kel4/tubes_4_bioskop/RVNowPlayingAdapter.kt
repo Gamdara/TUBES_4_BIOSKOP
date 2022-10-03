@@ -28,7 +28,7 @@ class RVPlayingAdapter(private val data: Array<Movie>) : RecyclerView.Adapter<RV
         val currenItem = data[position]
         holder.tvJudul.text = currenItem.judul
         holder.image.setImageResource(currenItem.poster)
-        holder.film.setOnClickListener() {
+        holder.buy.setOnClickListener() {
             context?.startActivity(
                 Intent(context, EditTicketActivity::class.java)
                     .putExtra("intent_id", 0)
@@ -46,7 +46,7 @@ class RVPlayingAdapter(private val data: Array<Movie>) : RecyclerView.Adapter<RV
     class viewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
         val tvJudul : TextView = itemView.findViewById(R.id.tvJudul)
         val image : ImageView = itemView.findViewById(R.id.imageView)
-        val film: CardView = itemView.findViewById(R.id.cvFilm)
+        val buy: Button = itemView.findViewById(R.id.btnBuy)
 
     }
 }
