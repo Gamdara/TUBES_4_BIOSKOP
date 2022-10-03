@@ -25,15 +25,15 @@ class UpdateProfileActivity : AppCompatActivity() {
         val sp = getSharedPreferences("user", 0)
         val id : Int = sp.getInt("id", 0)
 
-//        CoroutineScope(Dispatchers.IO).launch {
-//            val loggedUsers : List<User> = db.noteDao().getUser(id)
-//            val loggedUser = loggedUsers[0]
-//            Log.d("userini",loggedUser.toString())
-//            binding!!.teUser.setText(loggedUser.username)
-//            binding!!.teEmail.setText(loggedUser.email)
-//            binding!!.teTanggal.setText(loggedUser.tanggal)
-//            binding!!.teTelp.setText(loggedUser.telp)
-//        }
+        CoroutineScope(Dispatchers.Main).launch {
+            val loggedUsers : List<User> = db.noteDao().getUser(id)
+            val loggedUser = loggedUsers[0]
+
+            binding!!.teUser.setText(loggedUser.username)
+            binding!!.teEmail.setText(loggedUser.email)
+            binding!!.teTanggal.setText(loggedUser.tanggal)
+            binding!!.teTelp.setText(loggedUser.telp)
+        }
 
         binding!!.btnSimpan.setOnClickListener{
             CoroutineScope(Dispatchers.IO).launch {

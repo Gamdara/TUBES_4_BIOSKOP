@@ -40,7 +40,7 @@ class TicketFragment : Fragment() {
         val layoutManager = LinearLayoutManager(context)
         val db by lazy { UserDB(requireContext()) }
 
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.Main).launch {
             val tickets = db.ticketDao().getTickets()
             val adapter : RVTicketAdapter = RVTicketAdapter(tickets.toTypedArray())
             val rvPlaying : RecyclerView = view.findViewById(R.id.rv_ticket)
