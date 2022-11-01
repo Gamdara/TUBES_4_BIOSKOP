@@ -1,0 +1,35 @@
+{
+  "results" : [
+    {
+      "geometry": {
+        "location": {
+          "lat": -7.779433,
+          "lng" : 110.415782
+        }
+      },
+      "name" : "Atma Cinema 1",
+      "vicinity" : "Jl. Babarsari No.43, Janti, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": -7.782489992368269,
+          "lng" : 110.41968226765691
+        }
+      },
+      "name" : "Atma Cinema 2",
+      "vicinity" : "Jl. Raya Solo KM. 8 No. 234, Kalongan, Maguwoharjo, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55282"
+    },
+    {
+      "geometry": {
+        "location": {
+          "lat": -7.779813775868235,
+          "lng" : 110.41433347524111
+        }
+      },
+      "name" : "Atma Cinema 3",
+      "vicinity" : "Jl. Babarsari No.2, Janti, Caturtunggal, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281"
+    }
+  ],
+  "status": "OK"
+}

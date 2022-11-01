@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.kel4.tubes_4_bioskop">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,7 +16,10 @@
         android:theme="@style/Theme.TUBES_4_BIOSKOP"
         tools:targetApi="31">
         <activity
-            android:name=".MovieDetailActivity"
+            android:name=".pages.MapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pages.MovieDetailActivity"
             android:exported="false" />
         <activity
             android:name=".pages.EditTicketActivity"

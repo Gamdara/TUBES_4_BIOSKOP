@@ -17,6 +17,7 @@ import com.kel4.tubes_4_bioskop.databinding.FragmentPlayingBinding
 import com.kel4.tubes_4_bioskop.databinding.FragmentUpcomingBinding
 import com.kel4.tubes_4_bioskop.entity.Movie
 import com.kel4.tubes_4_bioskop.entity.MovieList
+import com.kel4.tubes_4_bioskop.pages.MapActivity
 import com.kel4.tubes_4_bioskop.pages.ProfileActivity
 
 class PlayingFragment : Fragment(){
@@ -38,6 +39,11 @@ class PlayingFragment : Fragment(){
             val mainIntent = Intent(requireContext(), ProfileActivity::class.java)
             this.startActivity(mainIntent)
         }
+        binding.mapsButton.setOnClickListener(){
+            val mainIntent = Intent(requireContext(), MapActivity::class.java)
+            this.startActivity(mainIntent)
+        }
+
         val btnLogout = binding.logoutButton
         btnLogout.setOnClickListener(){
             val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
