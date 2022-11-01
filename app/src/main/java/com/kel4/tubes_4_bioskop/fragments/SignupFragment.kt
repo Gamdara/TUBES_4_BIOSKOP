@@ -44,7 +44,7 @@ class SignupFragment : Fragment() {
         _binding = FragmentSignupBinding.inflate(inflater, container, false)
         var view : View = binding.root
         createNotificationChannel()
-        val button : Button = view.findViewById<Button>(R.id.button)
+        val button : Button = binding.button
         binding.button.setOnClickListener {
             val db by lazy { UserDB(requireContext()) }
             val username : String = binding.tilUsername?.getEditText()?.getText().toString()

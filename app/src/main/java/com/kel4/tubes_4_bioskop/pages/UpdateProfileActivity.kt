@@ -1,5 +1,6 @@
 package com.kel4.tubes_4_bioskop.pages
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -29,12 +30,18 @@ class UpdateProfileActivity : AppCompatActivity() {
             val loggedUsers : List<User> = db.noteDao().getUser(id)
             val loggedUser = loggedUsers[0]
 
+
             binding!!.teUser.setText(loggedUser.username)
             binding!!.teEmail.setText(loggedUser.email)
             binding!!.teTanggal.setText(loggedUser.tanggal)
             binding!!.teTelp.setText(loggedUser.telp)
         }
 
+        binding!!.camera.setOnClickListener{
+            val mainIntent = Intent(this, CameraActivity::class.java)
+            this.startActivity(mainIntent)
+            finish()
+        }
         binding!!.btnSimpan.setOnClickListener{
             CoroutineScope(Dispatchers.IO).launch {
                 val loggedUsers : List<User> = db.noteDao().getUser(id)
