@@ -20,6 +20,7 @@ import com.kel4.tubes_4_bioskop.R
 import com.kel4.tubes_4_bioskop.api.UserApi
 import com.kel4.tubes_4_bioskop.databinding.ActivityMainBinding
 import com.kel4.tubes_4_bioskop.databinding.ActivityProfileBinding
+import com.kel4.tubes_4_bioskop.entity.ResponseUser
 import com.kel4.tubes_4_bioskop.entity.User
 import com.kel4.tubes_4_bioskop.viewModels.ProfileViewModel
 import com.rama.gdroom_a_10735.room.UserDB
@@ -32,7 +33,6 @@ import java.nio.charset.StandardCharsets
 class ProfileActivity : AppCompatActivity() {
     val db by lazy { UserDB(this) }
     var binding: ActivityProfileBinding? = null
-    private var layoutLoading: LinearLayout? = null
     private var queue: RequestQueue? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,19 +41,18 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         val sp = getSharedPreferences("user", 0)
         val id : Int = sp.getInt("id", 0)
-        layoutLoading = findViewById(R.id.layout_loading)
         queue = Volley.newRequestQueue(this)
 
         setLoading(true)
         val stringRequest: StringRequest = object :
             StringRequest(Method.GET, UserApi.GET_BY_ID_URL + id, Response.Listener { response ->
                 val gson = Gson()
-                val user = gson.fromJson(response, User::class.java)
+                val user = gson.fromJson(response, ResponseUser::class.java)
 
-                binding!!.txtUsername.setText(user.username)
-                binding!!.txtEmail.setText(user.email)
-                binding!!.txtTanggal.setText(user.tanggal)
-                binding!!.txtTelepon.setText(user.telp)
+                binding!!.txtUsername.setText(user.data.username)
+                binding!!.txtEmail.setText(user.data.email)
+                binding!!.txtTanggal.setText(user.data.tanggal)
+                binding!!.txtTelepon.setText(user.data.telp)
 
                 Toast.makeText(this@ProfileActivity,"Data berhasil diambil!", Toast.LENGTH_SHORT).show()
                 setLoading(false)
@@ -98,10 +97,10 @@ class ProfileActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
             )
-            layoutLoading!!.visibility = View.VISIBLE
+            binding?.layoutLoading?.root?.visibility = View.VISIBLE
         } else {
             window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-            layoutLoading!!.visibility = View.INVISIBLE
+            binding?.layoutLoading?.root?.visibility = View.INVISIBLE
         }
     }
 }
