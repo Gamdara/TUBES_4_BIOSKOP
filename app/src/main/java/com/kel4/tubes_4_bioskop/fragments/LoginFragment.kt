@@ -26,6 +26,7 @@ import com.kel4.tubes_4_bioskop.constant.HttpsTrustManager.Companion.ignoreAllSS
 import com.kel4.tubes_4_bioskop.databinding.FragmentLoginBinding
 import com.kel4.tubes_4_bioskop.databinding.FragmentSignupBinding
 import com.kel4.tubes_4_bioskop.entity.ResponseCreate
+import com.kel4.tubes_4_bioskop.entity.ResponseUser
 import com.kel4.tubes_4_bioskop.entity.User
 import com.rama.gdroom_a_10735.room.UserDB
 import kotlinx.coroutines.CoroutineScope
@@ -122,14 +123,14 @@ class LoginFragment : Fragment() {
             StringRequest(Method.POST, UserApi.LOGIN_URL, Response.Listener { response ->
                 val gson = Gson()
                 Log.d("volleyerr",response.toString())
-                val mahasiswa = gson.fromJson(response, ResponseCreate::class.java)
+                val mahasiswa = gson.fromJson(response, ResponseUser::class.java)
 
                 if(mahasiswa != null)
                     Toast.makeText(requireContext(), "Login Sucess", Toast.LENGTH_SHORT).show()
 
                 val sp = requireActivity().getSharedPreferences("user", 0)
                 val editor = sp.edit()
-                editor.putInt("id", user.id)
+                editor.putInt("id", mahasiswa.data.id)
                 editor.commit()
 
                 val mainIntent = Intent(getActivity(), MainActivity::class.java)
