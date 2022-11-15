@@ -9,14 +9,27 @@ import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.view.WindowManager
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat.getSystemService
+import com.android.volley.AuthFailureError
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.google.gson.Gson
 import com.kel4.tubes_4_bioskop.MainActivity
 import com.kel4.tubes_4_bioskop.R
+import com.kel4.tubes_4_bioskop.api.TicketApi
+import com.kel4.tubes_4_bioskop.databinding.ActivityEditTicketBinding
 import com.kel4.tubes_4_bioskop.databinding.ActivityMainBinding
 import com.kel4.tubes_4_bioskop.entity.MovieList
+import com.kel4.tubes_4_bioskop.entity.ResponseCreate
+import com.kel4.tubes_4_bioskop.entity.ResponseData
 import com.kel4.tubes_4_bioskop.entity.Ticket
 import com.kel4.tubes_4_bioskop.notification.NotificationReceiver
 import com.rama.gdroom_a_10735.room.Constant
@@ -25,19 +38,23 @@ import kotlinx.android.synthetic.main.activity_edit_ticket.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONObject
+import java.nio.charset.StandardCharsets
 
 class EditTicketActivity : AppCompatActivity() {
     val db by lazy { UserDB(this) }
     private var id: Int = 0
     private var movieId: Int = 0
-    private var binding: ActivityMainBinding? = null
+    private var binding: ActivityEditTicketBinding? = null
     private val CHANNEL_BUY ="channel_buy_notificiation"
+    private var queue: RequestQueue? = null
     private val notificationId = 101
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_ticket)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        queue = Volley.newRequestQueue(this)
+        binding = ActivityEditTicketBinding.inflate(layoutInflater)
         setupView()
         setupListener()
     }
@@ -67,25 +84,58 @@ class EditTicketActivity : AppCompatActivity() {
 
         button_save.setOnClickListener{
             var temp :Ticket =Ticket(0,movieId, edit_kursi.text.toString(), edit_time.text.toString(),null)
-                createNotificationChannel()
+            createNotificationChannel()
             sendNotification(temp)
+            createTicket()
         }
         button_update.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
-
-                startActivity(Intent(this@EditTicketActivity, MainActivity::class.java))
-                finish()
-            }
+            updateTicket(intent.getIntExtra("intent_id", 0))
         }
     }
     fun getNote() {
         id = intent.getIntExtra("intent_id", 0)
 
-        CoroutineScope(Dispatchers.IO).launch {
-//            val notes = db.ticketDao().getTicket(id)[0]
-//            edit_kursi.setText(notes.seat)
-//            edit_time.setText(notes.time)
+        setLoading(true)
+
+        val stringRequest: StringRequest = object :
+            StringRequest(Method.POST, TicketApi.GET_BY_ID_URL + id, Response.Listener { response ->
+                val gson = Gson()
+                val mahasiswa = gson.fromJson(response, ResponseData::class.java)
+
+                if(mahasiswa != null)
+                    Toast.makeText(this@EditTicketActivity, "Data berhasil ditambahkan", Toast.LENGTH_SHORT).show()
+
+                binding?.editTime?.setText(mahasiswa.data[0].time.toString())
+                binding?.editKursi?.setText(mahasiswa.data[0].seat.toString())
+
+                setLoading(false)
+            }, Response.ErrorListener { error ->
+                setLoading(false)
+                try{
+                    val responseBody = String(error.networkResponse.data, StandardCharsets.UTF_8)
+                    val errors = JSONObject(responseBody)
+                    Toast.makeText(this@EditTicketActivity, errors.getString("message"), Toast.LENGTH_SHORT).show()
+                }
+                catch (e:Exception){
+                    Toast.makeText(this@EditTicketActivity, e.message, Toast.LENGTH_SHORT).show()
+                }
+            }){
+            @Throws(AuthFailureError::class)
+            override fun getHeaders(): Map<String, String>{
+                val headers = HashMap<String, String>()
+                headers["Accept"] = "application/json"
+                return headers
+            }
+            @Throws(AuthFailureError::class)
+            override fun getBody(): ByteArray{
+                return byteArrayOf()
+            }
+
+            override fun getBodyContentType(): String {
+                return "application/json"
+            }
         }
+        queue!!.add(stringRequest)
     }
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
@@ -114,16 +164,135 @@ class EditTicketActivity : AppCompatActivity() {
             .setContentText("Tiket berhasil dibeli")
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setStyle(NotificationCompat.BigTextStyle()
-                .bigText(MovieList.listOfNowPlaying[ticket.id_movie - 3].sinopsis)
+                .bigText(MovieList.listOfNowPlaying[ticket.id_movie].sinopsis)
                 .setSummaryText("Rincian Tiket")
-                .setBigContentTitle(MovieList.listOfNowPlaying[ticket.id_movie - 3].judul)
+                .setBigContentTitle(MovieList.listOfNowPlaying[ticket.id_movie].judul)
             )
-
-
 
         with(NotificationManagerCompat.from(this)){
             notify(notificationId, builder.build())
         }
     }
 
+    private fun createTicket(){
+        setLoading(true)
+        val mahasiswa = Ticket(
+            0,
+            movieId + 3,
+            binding!!.editTime.text.toString(),
+            binding!!.editKursi.text.toString(),
+            null
+        )
+        Log.d("createti",binding!!.editTime.text.toString())
+        val stringRequest: StringRequest = object :
+            StringRequest(Method.POST, TicketApi.ADD_URL, Response.Listener { response ->
+                val gson = Gson()
+                val mahasiswa = gson.fromJson(response, ResponseCreate::class.java)
+
+                if(mahasiswa != null)
+                    Toast.makeText(this@EditTicketActivity, "Data berhasil ditambahkan", Toast.LENGTH_SHORT).show()
+
+                val returnIntent = Intent()
+                setResult(RESULT_OK, returnIntent)
+                finish()
+                setLoading(false)
+            }, Response.ErrorListener { error ->
+                setLoading(false)
+                try{
+                    val responseBody = String(error.networkResponse.data, StandardCharsets.UTF_8)
+                    val errors = JSONObject(responseBody)
+                    Toast.makeText(this@EditTicketActivity, errors.getString("message"), Toast.LENGTH_SHORT).show()
+                }
+                catch (e:Exception){
+                    Toast.makeText(this@EditTicketActivity, e.message, Toast.LENGTH_SHORT).show()
+                }
+            }){
+            @Throws(AuthFailureError::class)
+            override fun getHeaders(): Map<String, String>{
+                val headers = HashMap<String, String>()
+                headers["Accept"] = "application/json"
+                return headers
+            }
+            @Throws(AuthFailureError::class)
+            override fun getBody(): ByteArray{
+                val gson = Gson()
+                val requestBody = gson.toJson(mahasiswa)
+                return requestBody.toByteArray(StandardCharsets.UTF_8)
+            }
+
+            override fun getBodyContentType(): String {
+                return "application/json"
+            }
+        }
+        queue!!.add(stringRequest)
+    }
+
+    private fun updateTicket(id: Int){
+        setLoading(true)
+
+        val mahasiswa = Ticket(
+            id,
+            movieId,
+            binding?.editTime.toString(),
+            binding?.editKursi.toString(),
+            null
+        )
+
+        val stringRequest: StringRequest = object :
+            StringRequest(Method.PUT, TicketApi.UPDATE_URL + id, Response.Listener { response ->
+                val gson = Gson()
+                val mahasiswa = gson.fromJson(response, ResponseCreate::class.java)
+
+                if(mahasiswa != null)
+                    Toast.makeText(this@EditTicketActivity, "Data berhasil diupdate", Toast.LENGTH_SHORT).show()
+
+                val returnIntent = Intent()
+                setResult(RESULT_OK, returnIntent)
+                finish()
+                setLoading(false)
+            }, Response.ErrorListener { error ->
+                setLoading(false)
+                try{
+                    val responseBody = String(error.networkResponse.data, StandardCharsets.UTF_8)
+                    val errors = JSONObject(responseBody)
+                    Toast.makeText(this@EditTicketActivity, errors.getString("message"), Toast.LENGTH_SHORT).show()
+                }
+                catch (e:Exception){
+                    Toast.makeText(this@EditTicketActivity, e.message, Toast.LENGTH_SHORT).show()
+                }
+            }){
+            @Throws(AuthFailureError::class)
+            override fun getHeaders(): Map<String, String>{
+                val headers = HashMap<String, String>()
+                headers["Accept"] = "application/json"
+                return headers
+            }
+            @Throws(AuthFailureError::class)
+            override fun getBody(): ByteArray{
+                val gson = Gson()
+                val requestBody = gson.toJson(mahasiswa)
+                return requestBody.toByteArray(StandardCharsets.UTF_8)
+            }
+
+            override fun getBodyContentType(): String {
+                return "application/json"
+            }
+        }
+        queue!!.add(stringRequest)
+    }
+
+
+    private fun setLoading(isLoading: Boolean){
+        if(isLoading){
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+            )
+            binding?.layoutLoading?.root?.visibility = View.VISIBLE
+        }
+        else{
+            window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+            binding?.layoutLoading?.root?.visibility = View.VISIBLE
+        }
+    }
 }

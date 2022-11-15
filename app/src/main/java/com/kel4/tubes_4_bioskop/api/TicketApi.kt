@@ -2,7 +2,7 @@ package com.kel4.tubes_4_bioskop.api
 
 class TicketApi {
     companion object{
-        val BASE_URL = "https://ugd11api.herokuapp.com/"
+        val BASE_URL = "https://atma-cinema.herokuapp.com/"
         val GET_ALL_URL = BASE_URL + "tickets"
         val GET_BY_ID_URL = BASE_URL + "tickets/"
         val ADD_URL = BASE_URL + "tickets"

@@ -80,7 +80,7 @@ class TicketFragment : Fragment() {
                 val gson = Gson()
 
                 val mahasiswa : Array<Ticket> = gson.fromJson(response, ResponseData::class.java).data.toTypedArray()
-                Log.d("allticket", mahasiswa[0].movie.toString())
+                Log.d("allticket", mahasiswa[0].movie?.judul.toString())
                 adapter!!.setData(mahasiswa)
                 adapter!!.filter.filter(binding.svMahasiswa!!.query)
                 binding.srMahasiswa!!.isRefreshing = false

@@ -22,6 +22,7 @@ import com.kel4.tubes_4_bioskop.MainActivity
 import com.kel4.tubes_4_bioskop.R
 import com.kel4.tubes_4_bioskop.api.UserApi
 import com.kel4.tubes_4_bioskop.constant.HttpsTrustManager
+import com.kel4.tubes_4_bioskop.constant.HttpsTrustManager.Companion.ignoreAllSSLErrors
 import com.kel4.tubes_4_bioskop.databinding.FragmentLoginBinding
 import com.kel4.tubes_4_bioskop.databinding.FragmentSignupBinding
 import com.kel4.tubes_4_bioskop.entity.ResponseCreate
@@ -30,6 +31,7 @@ import com.rama.gdroom_a_10735.room.UserDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
 import org.json.JSONObject
 import java.nio.charset.StandardCharsets
 
