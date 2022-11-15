@@ -78,7 +78,7 @@ class RVTicketAdapter(
                 Intent(context, EditTicketActivity::class.java)
                     .putExtra("intent_id", currenItem.id)
                     .putExtra("intent_type", Constant.TYPE_UPDATE)
-                    .putExtra("movie_id", currenItem.id_movie)
+                    .putExtra("movie_id", currenItem.id_movie - 3)
             )
             notifyItemChanged(position)
             notifyDataSetChanged()
