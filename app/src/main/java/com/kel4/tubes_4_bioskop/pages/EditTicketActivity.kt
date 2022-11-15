@@ -219,8 +219,8 @@ class EditTicketActivity : AppCompatActivity() {
         val mahasiswa = Ticket(
             0,
             movieId + 3,
-            binding!!.editTime.text.toString(),
             binding!!.editKursi.text.toString(),
+            binding!!.editTime.text.toString(),
             null
         )
         Log.d("createti",binding!!.editTime.text.toString())
@@ -273,8 +273,8 @@ class EditTicketActivity : AppCompatActivity() {
         val mahasiswa = Ticket(
             id,
             movieId + 3,
-            binding!!.editTime.text.toString(),
             binding!!.editKursi.text.toString(),
+            binding!!.editTime.text.toString(),
             null
         )
 
