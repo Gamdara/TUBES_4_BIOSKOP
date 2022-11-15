@@ -35,7 +35,7 @@ class ProfileActivity : AppCompatActivity() {
     private var layoutLoading: LinearLayout? = null
     private var queue: RequestQueue? = null
 
-    fun onCreate(savedInstanceState: Bundle? {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityProfileBinding.inflate(layoutInflater)
