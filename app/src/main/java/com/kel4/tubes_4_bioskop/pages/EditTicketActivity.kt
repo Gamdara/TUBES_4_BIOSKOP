@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.EditText
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -52,9 +53,10 @@ class EditTicketActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_ticket)
+
         queue = Volley.newRequestQueue(this)
         binding = ActivityEditTicketBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
         setupView()
         setupListener()
     }
@@ -98,10 +100,10 @@ class EditTicketActivity : AppCompatActivity() {
         setLoading(true)
 
         val stringRequest: StringRequest = object :
-            StringRequest(Method.POST, TicketApi.GET_BY_ID_URL + id, Response.Listener { response ->
+            StringRequest(Method.GET, TicketApi.GET_BY_ID_URL + id, Response.Listener { response ->
                 val gson = Gson()
                 val mahasiswa = gson.fromJson(response, ResponseData::class.java)
-
+                setLoading(false)
                 if(mahasiswa != null)
                     Toast.makeText(this@EditTicketActivity, "Data berhasil ditambahkan", Toast.LENGTH_SHORT).show()
 
@@ -126,14 +128,7 @@ class EditTicketActivity : AppCompatActivity() {
                 headers["Accept"] = "application/json"
                 return headers
             }
-            @Throws(AuthFailureError::class)
-            override fun getBody(): ByteArray{
-                return byteArrayOf()
-            }
 
-            override fun getBodyContentType(): String {
-                return "application/json"
-            }
         }
         queue!!.add(stringRequest)
     }
@@ -172,6 +167,51 @@ class EditTicketActivity : AppCompatActivity() {
         with(NotificationManagerCompat.from(this)){
             notify(notificationId, builder.build())
         }
+    }
+
+
+    private fun getTicketById(id: Int) {
+        setLoading(true)
+        val stringRequest: StringRequest = object :
+            StringRequest(
+                Method.GET,
+                TicketApi.GET_BY_ID_URL + id, Response.Listener { response ->
+                    val gson = Gson()
+                    val ticket = gson.fromJson(response, Ticket::class.java)
+
+//                    binding!!.editTime.setText(ticket.editTime)
+//                    binding!!.editKursi.setText(ticket.editKursi)
+
+                    Toast.makeText(
+                        this@EditTicketActivity,
+                        "Data berhasil diambil!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    setLoading(false)
+                },
+                Response.ErrorListener { error ->
+                    setLoading(false)
+
+                    try {
+                        val responseBody = String(error.networkResponse.data, StandardCharsets.UTF_8)
+                        val errors = JSONObject(responseBody)
+                        Toast.makeText(
+                            this@EditTicketActivity,
+                            errors.getString("message"),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } catch (e: Exception) {
+                        Toast.makeText(this@EditTicketActivity, e.message, Toast.LENGTH_SHORT).show()
+                    }
+                }) {
+            @Throws(AuthFailureError::class)
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Accept"] = "application/json"
+                return headers
+            }
+        }
+        queue!!.add(stringRequest)
     }
 
     private fun createTicket(){
@@ -232,9 +272,9 @@ class EditTicketActivity : AppCompatActivity() {
 
         val mahasiswa = Ticket(
             id,
-            movieId,
-            binding?.editTime.toString(),
-            binding?.editKursi.toString(),
+            movieId + 3,
+            binding!!.editTime.text.toString(),
+            binding!!.editKursi.text.toString(),
             null
         )
 
@@ -292,7 +332,7 @@ class EditTicketActivity : AppCompatActivity() {
         }
         else{
             window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-            binding?.layoutLoading?.root?.visibility = View.VISIBLE
+            binding?.layoutLoading?.root?.visibility = View.INVISIBLE
         }
     }
 }
