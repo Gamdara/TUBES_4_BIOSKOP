@@ -8,32 +8,50 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.android.volley.AuthFailureError
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.google.android.material.textfield.TextInputLayout
+import com.google.gson.Gson
 import com.kel4.tubes_4_bioskop.MainActivity
 import com.kel4.tubes_4_bioskop.R
+import com.kel4.tubes_4_bioskop.api.UserApi
+import com.kel4.tubes_4_bioskop.constant.HttpsTrustManager
+import com.kel4.tubes_4_bioskop.databinding.FragmentLoginBinding
+import com.kel4.tubes_4_bioskop.databinding.FragmentSignupBinding
+import com.kel4.tubes_4_bioskop.entity.ResponseCreate
 import com.kel4.tubes_4_bioskop.entity.User
 import com.rama.gdroom_a_10735.room.UserDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONObject
+import java.nio.charset.StandardCharsets
 
 
 class LoginFragment : Fragment() {
+    private var _binding: FragmentLoginBinding? = null
+    private val binding get() = _binding!!
     private lateinit var inputUsername : TextInputLayout
     private lateinit var inputPassword : TextInputLayout
     private lateinit var bundle : Bundle
+    private var queue: RequestQueue? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
-        var view : View = inflater.inflate(R.layout.fragment_login, container, false)
-        inputUsername = view.findViewById(R.id.tilUsername)
-        inputPassword = view.findViewById(R.id.tilPassword)
+        queue = Volley.newRequestQueue(requireContext())
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        var view : View = binding.root
+        inputUsername = binding.tilUsername
+        inputPassword = binding.tilPassword
 
 //        val args = this.arguments
         val extras = activity?.intent?.extras
@@ -60,33 +78,15 @@ class LoginFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            var isValid : Boolean = false
-            CoroutineScope(Dispatchers.IO).launch {
-                val users : List<User> = db.noteDao().getUsers()
-                for (user in users){
-                    Log.d("user",user.toString())
-                    if((password == user.password  && username == user.username)){
-                        val sp = requireActivity().getSharedPreferences("user", 0)
-                        val editor = sp.edit()
-                        editor.putInt("id", user.id)
-                        editor.commit()
 
-                        isValid = true
-                        val mainIntent = Intent(getActivity(), MainActivity::class.java)
-                        getActivity()?.startActivity(mainIntent)
-                        getActivity()?.finish()
-                    }
-
-                }
-                return@launch
+            try{
+                login()
             }
-
-//            if(!isValid){
-//                inputUsername.setError("Username atau password salah")
-//                inputPassword.setError("Username atau password salah")
-//                return@setOnClickListener
-//            }
-
+            catch(e : Error){
+                inputUsername.setError(e.message)
+                inputPassword.setError(e.message)
+                return@setOnClickListener
+            }
         }
 
         val buttonReset : Button = view.findViewById<Button>(R.id.buttonReset)
@@ -107,4 +107,65 @@ class LoginFragment : Fragment() {
         return view
     }
 
+    private fun login(){
+        binding.button.showLoading()
+        val user = User(
+            0,
+            binding.tilUsername?.getEditText()?.getText().toString(),
+            binding.tilPassword?.getEditText()?.getText().toString(),
+            "","",""
+        )
+
+        val stringRequest: StringRequest = object :
+            StringRequest(Method.POST, UserApi.LOGIN_URL, Response.Listener { response ->
+                val gson = Gson()
+                Log.d("volleyerr",response.toString())
+                val mahasiswa = gson.fromJson(response, ResponseCreate::class.java)
+
+                if(mahasiswa != null)
+                    Toast.makeText(requireContext(), "Login Sucess", Toast.LENGTH_SHORT).show()
+
+                val sp = requireActivity().getSharedPreferences("user", 0)
+                val editor = sp.edit()
+                editor.putInt("id", user.id)
+                editor.commit()
+
+                val mainIntent = Intent(getActivity(), MainActivity::class.java)
+                getActivity()?.startActivity(mainIntent)
+                getActivity()?.finish()
+
+                binding.button.hideLoading()
+            }, Response.ErrorListener { error ->
+                binding.button.hideLoading()
+                Log.d("volleyerr",error.toString())
+                try{
+                    val responseBody = String(error.networkResponse.data, StandardCharsets.UTF_8)
+                    val errors = JSONObject(responseBody)
+                    Toast.makeText(requireContext(), errors.getString("message"), Toast.LENGTH_SHORT).show()
+                    Log.d("volleyerr",errors.getString("message"))
+                }
+                catch (e:Exception){
+                    Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+                    Log.d("volleyerr",e.message.toString())
+                }
+            }){
+            @Throws(AuthFailureError::class)
+            override fun getHeaders(): Map<String, String>{
+                val headers = HashMap<String, String>()
+                headers["Accept"] = "application/json"
+                return headers
+            }
+            @Throws(AuthFailureError::class)
+            override fun getBody(): ByteArray{
+                val gson = Gson()
+                val requestBody = gson.toJson(user)
+                return requestBody.toByteArray(StandardCharsets.UTF_8)
+            }
+
+            override fun getBodyContentType(): String {
+                return "application/json"
+            }
+        }
+        queue!!.add(stringRequest)
+    }
 }

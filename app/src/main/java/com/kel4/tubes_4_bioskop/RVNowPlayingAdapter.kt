@@ -2,6 +2,7 @@ package com.kel4.tubes_4_bioskop
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,9 @@ class RVPlayingAdapter(private val data: Array<Movie>) : RecyclerView.Adapter<RV
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
         val currenItem = data[position]
+        Log.d("imageid",position.toString())
+        Log.d("imageid",data[position].poster.toString())
+
         holder.tvJudul.text = currenItem.judul
         holder.image.setImageResource(currenItem.poster)
         holder.buy.setOnClickListener() {

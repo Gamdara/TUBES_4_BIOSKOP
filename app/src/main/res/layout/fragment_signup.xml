@@ -150,7 +150,10 @@
 
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
+        <com.kusu.loadingbutton.LoadingButton
+            app:lb_isCircular="true"
+            android:textColor="@color/white"
+            app:lb_isShadowEnable="false"
             android:id="@+id/button"
             style="@style/ThemeOverlay.Material3.Button.TextButton"
             android:layout_width="match_parent"
@@ -158,6 +161,7 @@
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/dark_blue"
             android:fontFamily="@font/poppins"
+
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:text="Daftar"

@@ -8,12 +8,11 @@ import com.kel4.tubes_4_bioskop.entity.Ticket
 import com.kel4.tubes_4_bioskop.entity.User
 
 @Database(
-    entities = [User::class, Ticket::class],
+    entities = [User::class],
     version = 2
 )
 abstract class UserDB: RoomDatabase() {
     abstract fun noteDao() : UserDao
-    abstract fun ticketDao() : TicketDao
 
     companion object {
         @Volatile private var instance : UserDB? = null

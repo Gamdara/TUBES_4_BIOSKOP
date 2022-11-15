@@ -66,25 +66,13 @@ class EditTicketActivity : AppCompatActivity() {
     private fun setupListener() {
 
         button_save.setOnClickListener{
-            var temp :Ticket =Ticket(0,movieId, edit_kursi.text.toString(), edit_time.text.toString())
+            var temp :Ticket =Ticket(0,movieId, edit_kursi.text.toString(), edit_time.text.toString(),null)
                 createNotificationChannel()
-            CoroutineScope(Dispatchers.IO).launch {
-                db.ticketDao().add(
-                    temp
-                )
-
-                finish()
-            }
             sendNotification(temp)
         }
         button_update.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-                db.ticketDao().update(
-                    Ticket(id,movieId,
-                        edit_kursi.text.toString(),
-                        edit_time.text.toString(),
-                    )
-                )
+
                 startActivity(Intent(this@EditTicketActivity, MainActivity::class.java))
                 finish()
             }
@@ -94,9 +82,9 @@ class EditTicketActivity : AppCompatActivity() {
         id = intent.getIntExtra("intent_id", 0)
 
         CoroutineScope(Dispatchers.IO).launch {
-            val notes = db.ticketDao().getTicket(id)[0]
-            edit_kursi.setText(notes.seat)
-            edit_time.setText(notes.time)
+//            val notes = db.ticketDao().getTicket(id)[0]
+//            edit_kursi.setText(notes.seat)
+//            edit_time.setText(notes.time)
         }
     }
     override fun onSupportNavigateUp(): Boolean {
@@ -126,9 +114,9 @@ class EditTicketActivity : AppCompatActivity() {
             .setContentText("Tiket berhasil dibeli")
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setStyle(NotificationCompat.BigTextStyle()
-                .bigText(MovieList.listOfNowPlaying[ticket.movie].sinopsis)
+                .bigText(MovieList.listOfNowPlaying[ticket.id_movie - 3].sinopsis)
                 .setSummaryText("Rincian Tiket")
-                .setBigContentTitle(MovieList.listOfNowPlaying[ticket.movie].judul)
+                .setBigContentTitle(MovieList.listOfNowPlaying[ticket.id_movie - 3].judul)
             )
 
 

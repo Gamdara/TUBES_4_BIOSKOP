@@ -11,14 +11,15 @@ import com.kel4.tubes_4_bioskop.entity.MovieList.listOfNowPlaying
 class Ticket (
     @PrimaryKey(autoGenerate = true)
     var id : Int,
-    var movie: Int, var seat: String, var time: String
+    var id_movie: Int, var seat: String, var time: String,
+    val movie: Movie?
     ) {
     companion object{
         @JvmField
         var listOfTicket= arrayOf(
-            Ticket(98, 0,"2D","18:30"),
-            Ticket(97,1,"3D","18:30"),
-            Ticket(96,2,"4D","18:30")
+            Ticket(98, 0,"2D","18:30", null),
+            Ticket(97,1,"3D","18:30", null),
+            Ticket(96,2,"4D","18:30", null)
         )
 
         fun remove(arr: Array<Ticket>, index: Int) {
@@ -29,7 +30,7 @@ class Ticket (
 
         fun add(movie: Int) {
             val result = listOfTicket.toMutableList()
-            val add = Ticket(50, movie,"2D","18:30")
+            val add = Ticket(50, movie,"2D","18:30", null)
             result+=add
             listOfTicket = result.toTypedArray()
         }

@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         
     }
 
-
     fun changeFragment(fragment: Fragment?) {
         if (fragment != null) {
             getSupportFragmentManager()

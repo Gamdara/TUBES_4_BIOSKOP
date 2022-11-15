@@ -11,16 +11,26 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.android.volley.AuthFailureError
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.google.gson.Gson
+
 import com.kel4.tubes_4_bioskop.R
+import com.kel4.tubes_4_bioskop.api.UserApi
 import com.kel4.tubes_4_bioskop.databinding.FragmentSignupBinding
 import com.kel4.tubes_4_bioskop.entity.User
 import com.kel4.tubes_4_bioskop.notification.NotificationReceiver
@@ -29,18 +39,23 @@ import com.rama.gdroom_a_10735.room.UserDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONObject
+import java.nio.charset.StandardCharsets
 
 
 class SignupFragment : Fragment() {
-    private var _binding: FragmentSignupBinding? = null
-    private val binding get() = _binding!!
+
     private val CHANNEL_ID_1 = "channel_notification_01"
     private val notificationId1 = 101
+    private var _binding: FragmentSignupBinding? = null
+    private val binding get() = _binding!!
+    private var queue: RequestQueue? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        queue = Volley.newRequestQueue(requireContext())
         _binding = FragmentSignupBinding.inflate(inflater, container, false)
         var view : View = binding.root
         createNotificationChannel()
@@ -70,25 +85,7 @@ class SignupFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            CoroutineScope(Dispatchers.IO).launch {
-                db.noteDao().addUser(
-                    User(0,
-                        username,
-                        password,
-                        binding.tilEmail.editText?.text.toString(),
-                        binding.tilTanggal.editText?.text.toString(),
-                        binding.tilTelp.editText?.text.toString()
-                    )
-                )
-
-                sendNotification()
-
-                val fragment : Fragment = LoginFragment()
-                val ft: FragmentTransaction = getParentFragmentManager().beginTransaction()
-                ft.addToBackStack(null);
-                ft.replace(R.id.fragmentContainerView, fragment)
-                ft.commit()
-            }
+            register()
 
         }
 
@@ -155,6 +152,67 @@ class SignupFragment : Fragment() {
         with(NotificationManagerCompat.from(requireContext())){
             notify(notificationId1, builder.build())
         }
+    }
+
+    private fun register(){
+        binding.button.showLoading()
+        val mahasiswa = User(
+            0,
+            binding.tilUsername?.getEditText()?.getText().toString(),
+            binding.tilPassword?.getEditText()?.getText().toString(),
+            binding.tilEmail?.getEditText()?.getText().toString(),
+            binding.tilTanggal?.getEditText()?.getText().toString(),
+            binding.tilTelp?.getEditText()?.getText().toString()
+        )
+        val stringRequest: StringRequest = object :
+            StringRequest(Method.POST, UserApi.REGISTER_URL, Response.Listener { response ->
+                val gson = Gson()
+                val mahasiswa = gson.fromJson(response, User::class.java)
+
+                if(mahasiswa != null)
+                    Toast.makeText(requireContext(), "Berhasil Register", Toast.LENGTH_SHORT).show()
+
+                sendNotification()
+
+                val fragment : Fragment = LoginFragment()
+                val ft: FragmentTransaction = getParentFragmentManager().beginTransaction()
+                ft.addToBackStack(null);
+                ft.replace(R.id.fragmentContainerView, fragment)
+                ft.commit()
+
+                binding.button.hideLoading()
+            }, Response.ErrorListener { error ->
+                binding.button.hideLoading()
+                Log.d("volleyerr",error.toString())
+                try{
+                    val responseBody = String(error.networkResponse.data, StandardCharsets.UTF_8)
+                    val errors = JSONObject(responseBody)
+                    Toast.makeText(requireContext(), errors.getString("message"), Toast.LENGTH_SHORT).show()
+                    Log.d("volleyerr",errors.getString("message"))
+                }
+                catch (e:Exception){
+                    Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+                    Log.d("volleyerr",e.message.toString())
+                }
+            }){
+            @Throws(AuthFailureError::class)
+            override fun getHeaders(): Map<String, String>{
+                val headers = HashMap<String, String>()
+                headers["Accept"] = "application/json"
+                return headers
+            }
+            @Throws(AuthFailureError::class)
+            override fun getBody(): ByteArray{
+                val gson = Gson()
+                val requestBody = gson.toJson(mahasiswa)
+                return requestBody.toByteArray(StandardCharsets.UTF_8)
+            }
+
+            override fun getBodyContentType(): String {
+                return "application/json"
+            }
+        }
+        queue!!.add(stringRequest)
     }
 
     override fun onDestroyView() {

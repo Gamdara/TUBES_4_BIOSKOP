@@ -85,7 +85,10 @@
 
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
+        <com.kusu.loadingbutton.LoadingButton
+            app:lb_isCircular="true"
+            android:textColor="@color/white"
+            app:lb_isShadowEnable="false"
             android:id="@+id/button"
             style="@style/ThemeOverlay.Material3.Button.TextButton"
             app:cornerRadius="100dp"
