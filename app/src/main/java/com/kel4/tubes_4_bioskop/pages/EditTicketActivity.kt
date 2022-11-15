@@ -169,6 +169,51 @@ class EditTicketActivity : AppCompatActivity() {
         }
     }
 
+
+    private fun getTicketById(id: Int) {
+        setLoading(true)
+        val stringRequest: StringRequest = object :
+            StringRequest(
+                Method.GET,
+                TicketApi.GET_BY_ID_URL + id, Response.Listener { response ->
+                    val gson = Gson()
+                    val ticket = gson.fromJson(response, Ticket::class.java)
+
+//                    binding!!.editTime.setText(ticket.editTime)
+//                    binding!!.editKursi.setText(ticket.editKursi)
+
+                    Toast.makeText(
+                        this@EditTicketActivity,
+                        "Data berhasil diambil!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    setLoading(false)
+                },
+                Response.ErrorListener { error ->
+                    setLoading(false)
+
+                    try {
+                        val responseBody = String(error.networkResponse.data, StandardCharsets.UTF_8)
+                        val errors = JSONObject(responseBody)
+                        Toast.makeText(
+                            this@EditTicketActivity,
+                            errors.getString("message"),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } catch (e: Exception) {
+                        Toast.makeText(this@EditTicketActivity, e.message, Toast.LENGTH_SHORT).show()
+                    }
+                }) {
+            @Throws(AuthFailureError::class)
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Accept"] = "application/json"
+                return headers
+            }
+        }
+        queue!!.add(stringRequest)
+    }
+
     private fun createTicket(){
         setLoading(true)
         val mahasiswa = Ticket(
