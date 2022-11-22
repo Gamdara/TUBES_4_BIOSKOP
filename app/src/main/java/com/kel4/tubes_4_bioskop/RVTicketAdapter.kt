@@ -13,6 +13,8 @@ import android.widget.Filter
 import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.kel4.tubes_4_bioskop.constant.Constant
@@ -20,6 +22,7 @@ import com.kel4.tubes_4_bioskop.entity.MovieList
 import com.kel4.tubes_4_bioskop.entity.Ticket
 import com.kel4.tubes_4_bioskop.fragments.TicketFragment
 import com.kel4.tubes_4_bioskop.pages.EditTicketActivity
+import com.kel4.tubes_4_bioskop.pages.TicketDetailActivity
 import com.rama.gdroom_a_10735.room.UserDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -83,6 +86,13 @@ class RVTicketAdapter(
             notifyItemChanged(position)
             notifyDataSetChanged()
         }
+        holder.card.setOnClickListener(){
+            context?.startActivity(
+                Intent(context, TicketDetailActivity::class.java)
+                    .putExtra("intent_id", currenItem.id)
+                    .putExtra("movie_id", currenItem.id_movie - 3)
+            )
+        }
 
     }
 
@@ -102,6 +112,7 @@ class RVTicketAdapter(
         val seat : TextView = itemView.findViewById(R.id.tvSeat)
         val delete: Button = itemView.findViewById(R.id.btnDelete)
         val edit: Button = itemView.findViewById(R.id.btnEdit)
+        val card: CardView = itemView.findViewById(R.id.cardView2)
     }
 
 
