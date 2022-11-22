@@ -126,7 +126,7 @@ class RVTicketAdapter(
                 }
                 else{
                     for(ticket in data){
-                        if(ticket.time.lowercase(Locale.getDefault()).contains(charSequenceString.lowercase(Locale.getDefault()))){
+                        if(ticket.time.lowercase(Locale.getDefault()).contains(charSequenceString.lowercase(Locale.getDefault())) || ticket.movie!!.judul.lowercase(Locale.getDefault()).contains(charSequenceString.lowercase(Locale.getDefault()))){
                             filtered.add(ticket)
                         }
                     }
