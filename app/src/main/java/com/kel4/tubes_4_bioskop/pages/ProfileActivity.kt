@@ -44,7 +44,7 @@ class ProfileActivity : AppCompatActivity() {
         queue = Volley.newRequestQueue(this)
 
         setLoading(true)
-        val stringRequest: StringRequest = object :
+            val stringRequest: StringRequest = object :
             StringRequest(Method.GET, UserApi.GET_BY_ID_URL + id, Response.Listener { response ->
                 val gson = Gson()
                 val user = gson.fromJson(response, ResponseUser::class.java)
