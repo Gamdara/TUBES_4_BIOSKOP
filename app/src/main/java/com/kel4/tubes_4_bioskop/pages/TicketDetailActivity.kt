@@ -144,7 +144,7 @@ class TicketDetailActivity : AppCompatActivity() {
         //penambahan gambar pada Gambar atas
         val bitmap = (d as BitmapDrawable?)!!.bitmap
         val resizedBitmap = Bitmap.createScaledBitmap(
-            bitmap, 200, 400, false
+            bitmap, 200, 300, false
         )
         val stream = ByteArrayOutputStream()
         resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
@@ -152,7 +152,7 @@ class TicketDetailActivity : AppCompatActivity() {
 
         val imageData = ImageDataFactory.create(bitmapData)
 
-        val image = Image(imageData)
+        val image = Image(imageData).setHorizontalAlignment(HorizontalAlignment.CENTER)
         val namapengguna = Paragraph("Atma Cinema").setBold().setFontSize(24f)
             .setTextAlignment(TextAlignment.CENTER)
         val group = Paragraph(
