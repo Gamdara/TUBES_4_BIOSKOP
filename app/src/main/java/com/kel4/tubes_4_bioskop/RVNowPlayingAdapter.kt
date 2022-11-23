@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kel4.tubes_4_bioskop.constant.Constant
 import com.kel4.tubes_4_bioskop.entity.Movie
 import com.kel4.tubes_4_bioskop.pages.EditTicketActivity
+import com.kel4.tubes_4_bioskop.pages.MovieDetailActivity
+import com.kel4.tubes_4_bioskop.pages.TicketDetailActivity
 
 
 class RVPlayingAdapter(private val data: Array<Movie>) : RecyclerView.Adapter<RVPlayingAdapter.viewHolder>() {
@@ -32,11 +34,9 @@ class RVPlayingAdapter(private val data: Array<Movie>) : RecyclerView.Adapter<RV
 
         holder.tvJudul.text = currenItem.judul
         holder.image.setImageResource(currenItem.poster)
-        holder.buy.setOnClickListener() {
+        holder.image.setOnClickListener(){
             context?.startActivity(
-                Intent(context, EditTicketActivity::class.java)
-                    .putExtra("intent_id", 0)
-                    .putExtra("intent_type", Constant.TYPE_CREATE)
+                Intent(context, MovieDetailActivity::class.java)
                     .putExtra("movie_id", position)
             )
         }
@@ -50,7 +50,6 @@ class RVPlayingAdapter(private val data: Array<Movie>) : RecyclerView.Adapter<RV
     class viewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
         val tvJudul : TextView = itemView.findViewById(R.id.tvJudul)
         val image : ImageView = itemView.findViewById(R.id.imageView)
-        val buy: Button = itemView.findViewById(R.id.btnBuy)
 
     }
 }
