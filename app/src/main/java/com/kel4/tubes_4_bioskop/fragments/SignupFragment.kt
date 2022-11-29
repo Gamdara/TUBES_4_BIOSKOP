@@ -1,6 +1,5 @@
 package com.kel4.tubes_4_bioskop.fragments
 
-import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -28,7 +27,6 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
-
 import com.kel4.tubes_4_bioskop.R
 import com.kel4.tubes_4_bioskop.api.UserApi
 import com.kel4.tubes_4_bioskop.databinding.FragmentSignupBinding
@@ -36,9 +34,6 @@ import com.kel4.tubes_4_bioskop.entity.User
 import com.kel4.tubes_4_bioskop.notification.NotificationReceiver
 import com.kel4.tubes_4_bioskop.pages.AuthActivity
 import com.rama.gdroom_a_10735.room.UserDB
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.json.JSONObject
 import java.nio.charset.StandardCharsets
 
@@ -50,6 +45,8 @@ class SignupFragment : Fragment() {
     private var _binding: FragmentSignupBinding? = null
     private val binding get() = _binding!!
     private var queue: RequestQueue? = null
+    private var emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+    private var phoneMinimum = "^[+]?[0-9]{10,13}$"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,20 +65,33 @@ class SignupFragment : Fragment() {
                 binding.tilUsername.setError("Username tidak boleh kosong")
                 return@setOnClickListener
             }
-            if(password.isEmpty()) {
-                binding.tilPassword.setError("Password tidak boleh kosong")
-                return@setOnClickListener
-            }
+
             if(binding.tilEmail.editText?.text.toString().isEmpty()) {
                 binding.tilEmail.setError("Email tidak boleh kosong")
                 return@setOnClickListener
             }
+
+            if(!binding.tilEmail.editText?.text.toString().matches(emailPattern.toRegex())) {
+                binding.tilEmail.setError("Email tidak valid")
+                return@setOnClickListener
+            }
+
             if(binding.tilTanggal.editText?.text.toString().isEmpty()) {
                 binding.tilTanggal.setError("Tanggal tidak boleh kosong")
                 return@setOnClickListener
             }
+
             if(binding.tilTelp.editText?.text.toString().isEmpty()) {
                 binding.tilTelp.setError("Nomor telepon tidak boleh kosong")
+                return@setOnClickListener
+            }
+            if(!binding.tilTelp.editText?.text.toString().matches(phoneMinimum.toRegex())) {
+                binding.tilTelp.setError("Nomor telepon Minimal 10 dan Maksimal 13")
+                return@setOnClickListener
+            }
+
+            if(password.isEmpty()) {
+                binding.tilPassword.setError("Password tidak boleh kosong")
                 return@setOnClickListener
             }
 
