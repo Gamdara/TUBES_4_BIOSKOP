@@ -57,7 +57,7 @@
             android:exported="false" />
         <activity
             android:name=".pages.AuthActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
