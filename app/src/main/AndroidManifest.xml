@@ -48,7 +48,7 @@
             android:exported="false" />
         <activity
             android:name=".pages.EditTicketActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".pages.UpdateProfileActivity"
             android:exported="false" />
@@ -60,7 +60,7 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".pages.SplashScreen"
             android:exported="true">

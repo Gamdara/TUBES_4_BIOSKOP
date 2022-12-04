@@ -68,28 +68,33 @@ class LoginFragment : Fragment() {
         val button : Button = view.findViewById<Button>(R.id.button)
         button.setOnClickListener{
             val db by lazy { UserDB(requireContext()) }
-
+            var valid = true
             var username : String = inputUsername?.getEditText()?.getText().toString();
             var password : String = inputPassword?.getEditText()?.getText().toString();
 
             if(username.isEmpty()) {
                 inputUsername.setError("Username tidak boleh kosong")
-                return@setOnClickListener
+                valid = false
             }
+            else inputUsername.setError("")
             if(password.isEmpty()) {
                 inputPassword.setError("Password tidak boleh kosong")
-                return@setOnClickListener
+                valid = false
+            }
+            else inputPassword.setError("")
+
+            if(!valid ) return@setOnClickListener
+            else{
+                try{
+                    login()
+                }
+                catch(e : Error){
+                    inputUsername.setError(e.message)
+                    inputPassword.setError(e.message)
+                    return@setOnClickListener
+                }
             }
 
-
-            try{
-                login()
-            }
-            catch(e : Error){
-                inputUsername.setError(e.message)
-                inputPassword.setError(e.message)
-                return@setOnClickListener
-            }
         }
 
         val buttonReset : Button = view.findViewById<Button>(R.id.buttonReset)
@@ -111,7 +116,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun login(){
-        binding.button.showLoading()
+//        binding.button.showLoading()
         val user = User(
             0,
             binding.tilUsername?.getEditText()?.getText().toString(),
@@ -137,9 +142,9 @@ class LoginFragment : Fragment() {
                 getActivity()?.startActivity(mainIntent)
                 getActivity()?.finish()
 
-                binding.button.hideLoading()
+//                binding.button.hideLoading()
             }, Response.ErrorListener { error ->
-                binding.button.hideLoading()
+//                binding.button.hideLoading()
                 Log.d("volleyerr",error.toString())
                 try{
                     val responseBody = String(error.networkResponse.data, StandardCharsets.UTF_8)

@@ -53,7 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins"
-
+                    android:id="@+id/etUser"
                     android:hint="Username"
                     android:textColor="@color/gray_300"
                     android:textSize="16dp" />
@@ -119,7 +119,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins"
-
+                    android:id="@+id/etTelp"
                     android:hint="No Telepon"
                     android:textColor="@color/gray_300"
                     android:textSize="16dp" />
@@ -142,7 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins"
-
+                    android:id="@+id/etPass"
                     android:hint="Password"
                     android:textColor="@color/gray_300"
                     android:textSize="16dp" />
@@ -150,7 +150,7 @@
 
         </LinearLayout>
 
-        <com.kusu.loadingbutton.LoadingButton
+        <Button
             app:lb_isCircular="true"
             android:textColor="@color/white"
             app:lb_isShadowEnable="false"

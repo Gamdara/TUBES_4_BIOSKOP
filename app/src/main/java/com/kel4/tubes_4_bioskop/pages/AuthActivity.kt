@@ -5,13 +5,15 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import com.kel4.tubes_4_bioskop.R
+import com.kel4.tubes_4_bioskop.fragments.LoginFragment
 
 class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getSupportActionBar()?.hide()
+//        getSupportActionBar()?.hide()
+        Log.d("masuk","login")
         setContentView(R.layout.activity_auth)
-        Log.d("extras",intent?.extras.toString())
+        changeFragment(LoginFragment())
     }
 
     fun changeFragment(fragment: Fragment?) {

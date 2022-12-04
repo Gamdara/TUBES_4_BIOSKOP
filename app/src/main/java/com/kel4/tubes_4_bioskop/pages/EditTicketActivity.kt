@@ -54,6 +54,7 @@ class EditTicketActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         queue = Volley.newRequestQueue(this)
         binding = ActivityEditTicketBinding.inflate(layoutInflater)
         setContentView(binding?.root)
@@ -62,7 +63,7 @@ class EditTicketActivity : AppCompatActivity() {
     }
     fun setupView(){
 
-        val intentType = intent.getIntExtra("intent_type", 0)
+        val intentType = intent.getIntExtra("intent_type", 1)
         movieId = intent.getIntExtra("movie_id", 0)
         val movie = MovieList.listOfNowPlaying[movieId]
         edit_movie.setText(movie.judul)

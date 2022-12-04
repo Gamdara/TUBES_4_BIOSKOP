@@ -61,40 +61,50 @@ class SignupFragment : Fragment() {
             val db by lazy { UserDB(requireContext()) }
             val username : String = binding.tilUsername?.getEditText()?.getText().toString()
             val password : String = binding.tilPassword?.getEditText()?.getText().toString()
+            var valid = true
             if(username.isEmpty()) {
                 binding.tilUsername.setError("Username tidak boleh kosong")
                 return@setOnClickListener
             }
+            else binding.tilUsername.setError("")
 
             if(binding.tilEmail.editText?.text.toString().isEmpty()) {
                 binding.tilEmail.setError("Email tidak boleh kosong")
                 return@setOnClickListener
             }
+            else binding.tilEmail.setError("")
 
             if(!binding.tilEmail.editText?.text.toString().matches(emailPattern.toRegex())) {
                 binding.tilEmail.setError("Email tidak valid")
                 return@setOnClickListener
             }
+            else binding.tilEmail.setError("")
 
             if(binding.tilTanggal.editText?.text.toString().isEmpty()) {
                 binding.tilTanggal.setError("Tanggal tidak boleh kosong")
                 return@setOnClickListener
             }
+            else binding.tilTanggal.setError("")
 
             if(binding.tilTelp.editText?.text.toString().isEmpty()) {
                 binding.tilTelp.setError("Nomor telepon tidak boleh kosong")
                 return@setOnClickListener
             }
+            else binding.tilTelp.setError("")
+
             if(!binding.tilTelp.editText?.text.toString().matches(phoneMinimum.toRegex())) {
                 binding.tilTelp.setError("Nomor telepon Minimal 10 dan Maksimal 13")
                 return@setOnClickListener
             }
+            else binding.tilTelp.setError("")
 
             if(password.isEmpty()) {
                 binding.tilPassword.setError("Password tidak boleh kosong")
                 return@setOnClickListener
             }
+            else binding.tilPassword.setError("")
 
+            if(!valid) return@setOnClickListener
             register()
 
         }
@@ -165,7 +175,7 @@ class SignupFragment : Fragment() {
     }
 
     private fun register(){
-        binding.button.showLoading()
+//        binding.button.showLoading()
         val mahasiswa = User(
             0,
             binding.tilUsername?.getEditText()?.getText().toString(),
@@ -190,9 +200,9 @@ class SignupFragment : Fragment() {
                 ft.replace(R.id.fragmentContainerView, fragment)
                 ft.commit()
 
-                binding.button.hideLoading()
+//                binding.button.hideLoading()
             }, Response.ErrorListener { error ->
-                binding.button.hideLoading()
+//                binding.button.hideLoading()
                 Log.d("volleyerr",error.toString())
                 try{
                     val responseBody = String(error.networkResponse.data, StandardCharsets.UTF_8)
