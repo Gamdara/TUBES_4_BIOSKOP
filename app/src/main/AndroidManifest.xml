@@ -3,9 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.kel4.tubes_4_bioskop">
 
-    <application
-        android:allowBackup="true"
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <application
+        android:usesCleartextTraffic="true"
+        android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -15,9 +27,37 @@
         android:theme="@style/Theme.TUBES_4_BIOSKOP"
         tools:targetApi="31">
         <activity
-            android:name=".pages.AuthActivity"
-
+            android:name=".pages.TicketDetailActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".pages.MovieDetailActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".pages.MapActivity"
             android:exported="false" />
+        <activity
+            android:name=".pages.CameraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pages.EditTicketActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pages.UpdateProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pages.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pages.AuthActivity"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
@@ -30,6 +70,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".notification.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".notification.NotificationReceiver" />
     </application>
 
 </manifest>

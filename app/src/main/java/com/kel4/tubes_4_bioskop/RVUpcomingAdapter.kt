@@ -11,7 +11,7 @@ import com.kel4.tubes_4_bioskop.entity.Movie
 class RVUpcomingAdapter(private val data: Array<Movie>) : RecyclerView.Adapter<RVUpcomingAdapter.viewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder{
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.rv_item_movie, parent,false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.rv_item_upcoming, parent,false)
         return viewHolder(itemView)
     }
 

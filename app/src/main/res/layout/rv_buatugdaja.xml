@@ -59,6 +59,13 @@
 
     </androidx.cardview.widget.CardView>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Button" />
+
 </androidx.cardview.widget.CardView>
 
 

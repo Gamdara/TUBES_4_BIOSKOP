@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_blue"
+    tools:context=".pages.MovieDetailActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_blue"
+            android:backgroundTint="@color/dark_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/ubuntu"
+                    android:text="ATMA CINEMA"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    android:textColor="@color/gray_100"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="#FFFFFF" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardMovie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/topbar">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="380dp"
+                    android:layout_height="700dp"
+                    android:background="@color/white">
+
+                        <TextView
+                            android:id="@+id/tvJudul"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="16dp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins"
+                            android:text="JUDUL"
+                            android:textSize="25dp"
+                            android:textStyle="bold"
+                            android:textAllCaps="true"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/banners"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="15dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            app:layout_constraintTop_toBottomOf="@id/tvJudul"
+                            app:layout_constraintStart_toStartOf="parent">
+                                <ImageView
+                                    android:id="@+id/imageView"
+                                    android:layout_width="168dp"
+                                    android:layout_height="220dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/ic_launcher_background"
+                                    android:visibility="visible"
+                                    app:layout_constraintVertical_bias="0.0"
+                                    app:layout_constraintWidth_percent=".3" />
+                        </androidx.cardview.widget.CardView>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnBuy"
+                            style="@style/ThemeOverlay.Material3.Button.TextButton"
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginTop="100dp"
+                            android:layout_marginEnd="40dp"
+                            android:backgroundTint="@color/dark_blue"
+                            android:fontFamily="@font/poppins"
+                            android:paddingTop="16dp"
+                            android:paddingBottom="16dp"
+                            android:text="BUY TICKET"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/banners"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnTrailer"
+                            style="@style/ThemeOverlay.Material3.Button.TextButton"
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="40dp"
+                            android:backgroundTint="@color/dark_blue"
+                            android:fontFamily="@font/poppins"
+                            android:paddingTop="16dp"
+                            android:paddingBottom="16dp"
+                            android:text="TRAILER"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.527"
+                            app:layout_constraintStart_toEndOf="@+id/banners"
+                            app:layout_constraintTop_toBottomOf="@id/btnBuy" />
+
+                        <TextView
+                            android:id="@+id/tvDeskripsi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="Deskripsi"
+                            android:textColor="@color/black"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintEnd_toStartOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/banners" />
+
+                        <TextView
+                            android:id="@+id/textView5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Producer:"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvDeskripsi"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/tvProducer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nama Producer"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/textView5"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="55dp" />
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Sutradara:"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvProducer"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginTop="10dp"/>
+
+                        <TextView
+                            android:id="@+id/tvDirector"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nama Director"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/textView6"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="55dp" />
+
+                        <TextView
+                            android:id="@+id/textView7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Penulis:"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvDirector"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginTop="10dp"/>
+
+                        <TextView
+                            android:id="@+id/tvWriter"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nama Writer"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/textView7"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="55dp" />
+
+                        <include
+                            android:id="@+id/layout_loading"
+                            layout="@layout/layout_loading"
+                            android:visibility="gone"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
