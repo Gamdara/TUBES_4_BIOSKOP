@@ -86,12 +86,34 @@ class EditTicketActivity : AppCompatActivity() {
     private fun setupListener() {
 
         button_save.setOnClickListener{
+            var valid = true
+            if(binding!!.editKursi.text.isEmpty()) {
+                binding!!.editKursi.setError("Nomor kursi harus diisi")
+                valid = false
+            }
+            if(binding!!.editTime.text.isEmpty()) {
+                binding!!.editTime.setError("Jam harus diisi")
+                valid = false
+            }
+            if(!valid) return@setOnClickListener
+
             var temp :Ticket =Ticket(0,movieId, edit_kursi.text.toString(), edit_time.text.toString(),null)
             createNotificationChannel()
             sendNotification(temp)
             createTicket()
         }
         button_update.setOnClickListener {
+            var valid = true
+            if(binding!!.editKursi.text.isEmpty()) {
+                binding!!.editKursi.setError("Nomor kursi harus diisi")
+                valid = false
+            }
+            if(binding!!.editTime.text.isEmpty()) {
+                binding!!.editTime.setError("Jam harus diisi")
+                valid = false
+            }
+            if(!valid) return@setOnClickListener
+            else
             updateTicket(intent.getIntExtra("intent_id", 0))
         }
     }
@@ -216,6 +238,9 @@ class EditTicketActivity : AppCompatActivity() {
     }
 
     private fun createTicket(){
+
+
+
         setLoading(true)
         val mahasiswa = Ticket(
             0,
@@ -269,6 +294,8 @@ class EditTicketActivity : AppCompatActivity() {
     }
 
     private fun updateTicket(id: Int){
+
+
         setLoading(true)
 
         val mahasiswa = Ticket(

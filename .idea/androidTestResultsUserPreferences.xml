@@ -57,6 +57,21 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="1685475238">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="5866985b" value="120" />
+                  <entry key="Duration" value="90" />
+                  <entry key="Pixel_2_API_30" value="120" />
+                  <entry key="Tests" value="360" />
+                  <entry key="realme&#10; RMX1971" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="1950535271">
           <value>
             <AndroidTestResultsTableState>

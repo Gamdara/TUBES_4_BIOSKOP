@@ -22,7 +22,7 @@ class AuthActivityTest  {
         baristaRule.launchActivity()
     }
 
-//    @Test
+    @Test
     fun testLogin(){
 //        val scenario = launchFragmentInContainer<LoginFragment>(Bundle(), R.style.Theme_TUBES_4_BIOSKOP){LoginFragment()}
         BaristaSleepInteractions.sleep(1000)
@@ -56,6 +56,8 @@ class AuthActivityTest  {
         BaristaSleepInteractions.sleep(1000)
         BaristaClickInteractions.clickOn(R.id.button)
         BaristaSleepInteractions.sleep(1000)
+//        BaristaScrollInteractions.scrollTo(R.id.tvLogin)
+//        BaristaSleepInteractions.sleep(1000)
         BaristaEditTextInteractions.writeTo(R.id.tilTanggal,"1")
         BaristaSleepInteractions.sleep(1000)
         BaristaClickInteractions.clickOn(R.id.button)
