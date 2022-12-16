@@ -113,4 +113,5 @@ dependencies {
     implementation 'com.vipulasri:ticketview:1.1.2'
     //qr generator
     implementation 'com.github.androidmads:QRGenerator:1.0.1'
+    implementation 'androidx.work:work-runtime-ktx:2.7.0'
 }
