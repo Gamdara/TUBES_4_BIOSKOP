@@ -83,7 +83,7 @@ class UpdateProfileActivity : AppCompatActivity() {
             finish()
         }
         binding!!.btnSimpan.setOnClickListener{
-            setLoading(true)
+            binding!!.btnSimpan.showLoading()
             val user = User(
                 id,
                 binding!!.teUser.text.toString(),
@@ -109,9 +109,9 @@ class UpdateProfileActivity : AppCompatActivity() {
                     setResult(RESULT_OK, returnIntent)
                     finish()
 
-                    setLoading(false)
+                    binding!!.btnSimpan.hideLoading()
                 }, Response.ErrorListener { error ->
-                    setLoading(false)
+                    binding!!.btnSimpan.hideLoading()
 
                     try {
                         val responseBody = String(error.networkResponse.data, StandardCharsets.UTF_8)
